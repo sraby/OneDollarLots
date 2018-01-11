@@ -194,7 +194,7 @@ ODL_pending.addTo(map);
 
 ODL_sold.bindPopup(function (layer) {
     return L.Util.template('<h3>Sold for $1</h3>' 
-        + layer.feature.properties.Purchaser_Name + ', a <b>' + layer.feature.properties.Purchaser_Type + '</b>, bought this land from the city for one dollar on ' + layer.feature.properties.Date_Deed_Signed + '.<br>' +
+        + layer.feature.properties.Purchaser_Name + ', a <u>' + layer.feature.properties.Purchaser_Type + '</u>, bought this land from the city for one dollar on ' + layer.feature.properties.Date_Deed_Signed + '.<br>' +
             '<br><table>' + 
               '<tr><td>Borough</td><td>' + layer.feature.properties.Borough + '</td></tr>' + 
               '<tr><td>Block</td><td>' + layer.feature.properties.Block + '</td></tr>' +
@@ -209,7 +209,7 @@ ODL_sold.bindPopup(function (layer) {
 
 ODL_pending.bindPopup(function (layer) {
     return L.Util.template('<h3>Pending Sale for $1</h3>' 
-        + layer.feature.properties.Purchaser_Name + ', a <b>' + layer.feature.properties.Purchaser_Type + '</b>, was a proposed one-dollar buyer of this land in a notice posted on ' + layer.feature.properties.Date_Notice_was_Published + '.<br>' +
+        + layer.feature.properties.Purchaser_Name + ', a <u>' + layer.feature.properties.Purchaser_Type + '</u>, was a proposed one-dollar buyer of this land in a notice posted on ' + layer.feature.properties.Date_Notice_was_Published + '.<br>' +
             '<br><table>' + 
               '<tr><td>Borough</td><td>' + layer.feature.properties.Borough + '</td></tr>' + 
               '<tr><td>Block</td><td>' + layer.feature.properties.Block + '</td></tr>' +

@@ -2,9 +2,28 @@ body {
     margin: 0px;
 }
 
+#header {
+    width: 100%;
+    height: 10vh;
+    position: absolute;
+    font-size: 2em;
+    font-family: 'Raleway-Light', sans-serif;
+    letter-spacing: 2.8;
+    color: white;
+    background-color: #A1A8AA;
+
+}
+
+.header-text {
+    position: absolute;
+    top: 20%;
+    left: 25px;
+}
+
 #mainmap {
 	width: 100%; 
-    height: 100vh;
+    height: 90vh;
+    top: 10vh;
     padding: 0%;
     font-family: 'Raleway', sans-serif;
 }
