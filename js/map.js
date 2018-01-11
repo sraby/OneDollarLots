@@ -34,10 +34,22 @@ function getColor(d)
                 d ==     'Sold HDFC Coop' ? '#3288bd':
                 d ==     'Pending Non-Profit Developer' ? '#91cf60':
                 d ==     'Sold Non-Profit Developer' ? '#91cf60':
-                d ==     'Pending For-Profit Developer/Non-Profit Developer' ? '#fee08b':
-                d ==     'Sold For-Profit Developer/Non-Profit Developer' ? '#fee08b':
+                d ==     'Pending For-Profit Developer/Non-Profit Developer' ? '#FFDD7C':
+                d ==     'Sold For-Profit Developer/Non-Profit Developer' ? '#FFDD7C':
                 d ==     'Pending For-Profit Developer' ? '#d73027':
                 '#d73027';
+        }
+
+function getBorder(d)
+    {
+        return  d ==     'Pending HDFC Coop' ? '#0A5A89':
+                d ==     'Sold HDFC Coop' ? '#0A5A89':
+                d ==     'Pending Non-Profit Developer' ? '#538D26':
+                d ==     'Sold Non-Profit Developer' ? '#538D26':
+                d ==     'Pending For-Profit Developer/Non-Profit Developer' ? '#BA9838':
+                d ==     'Sold For-Profit Developer/Non-Profit Developer' ? '#BA9838':
+                d ==     'Pending For-Profit Developer' ? '#830B05':
+                '#830B05';
         }
 
 
@@ -57,7 +69,7 @@ function highlightFeature(e) {
 
     $(e.target.getElement()).attr('id', 'active');
 
-    $('.leaflet-interactive').not('#active').css("fill","#BBB").css("fillOpacity","0.45");
+    $('.leaflet-interactive').not('#active').css("fill","#BBB").css("fillOpacity","0.45").css("stroke","#999");
 
     if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
         layer.bringToFront();
@@ -76,7 +88,7 @@ function resetHighlight(e) {
 
     $(e.target.getElement()).removeAttr("id");
 
-    $('.leaflet-interactive').css("fill","").css("fillOpacity","");
+    $('.leaflet-interactive').css("fill","").css("fillOpacity","").css("stroke","");
     
 }
 
@@ -87,17 +99,48 @@ function onEachFeature(feature, layer) {
     });
 } 
 
+
 function pointToLayer(feature, latlng) {
     return L.circleMarker(latlng, 
         {
             radius: 7,
+            color: getBorder(feature.properties.Symbol),
             fillColor: getColor(feature.properties.Symbol),
-            weight: 1,
-            opacity: 0,
+            weight: 1.5,
+            opacity: 0.6,
             fillOpacity: 0.6
         }
     );
 }
+
+
+/* TWO SEPARATE SYMBOLOGIES
+
+function pointToLayerSold(feature, latlng) {
+    return L.circleMarker(latlng, 
+        {
+            radius: 7,
+            fillColor: getColor(feature.properties.Symbol),
+            weight: 0,
+            fillOpacity: 0.6
+        }
+    );
+}
+
+function pointToLayerPending(feature, latlng) {
+    return L.circleMarker(latlng, 
+        {
+            radius: 7,
+            color: getBorder(feature.properties.Symbol),
+            fillColor: getColor(feature.properties.Symbol),
+            weight: 2,
+            opacity: 0.6,
+            fillOpacity: 0.6
+        }
+    );
+}
+
+*/
 
 // FILTERING 
 
@@ -108,7 +151,6 @@ function soldFilter(feature) {
 function pendingFilter(feature) {
     if (feature.properties.Status === "Pending") return true
 } 
-
 
 
 var soldData = L.geoJson(null, {
