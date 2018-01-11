@@ -1,0 +1,112 @@
+body {
+    margin: 0px;
+}
+
+#mainmap {
+	width: 100%; 
+    height: 100vh;
+    padding: 0%;
+    font-family: 'Raleway', sans-serif;
+}
+
+#active {
+}
+
+.leaflet-control-layers-expanded {
+    font-size: 14px;
+}
+
+
+table {
+    text-align: left;
+    font-size: 12px;
+}
+
+td { 
+    padding-right: 20px !important;
+}
+
+.legend-toggle {
+    width: 22px;
+    height: 22px;
+    z-index: 1001;
+    position: absolute;
+    right: 13px;
+    bottom: 28px;
+    border-radius: 50%;
+    opacity: 0.7;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    border: none;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+}
+
+.legend-toggle-button {
+    background: #444; 
+    color: white;
+}
+
+.legend-toggle-button:hover {
+    background: #888;
+}
+
+.legend-close-button {
+    background: rgba(0,0,0,0);
+    color: #444;  
+}
+
+.legend-close-button:hover {
+    color: #888;
+}
+
+.info {
+    padding: 6px 8px;
+    font: 14px/16px Arial, Helvetica, sans-serif;
+    background: white;
+    background: rgba(255,255,255,0.8);
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 5px;
+    /* max-width: 50%; */ 
+}
+
+.info h4 {
+    margin: 0 0 5px;
+    color: #777;
+}
+
+.hovertext {
+    pointer-events:none !important;
+}
+
+.legend {
+    line-height: 9.1px;
+    color: #555;
+    pointer-events:none !important;
+    display: none; 
+}
+.legend i {
+    width: 18px;
+    height: 9px;
+    float: left;
+    margin-right: 8px;
+    opacity: 0.9;
+}
+
+.red {
+    color: #BE1827;
+}
+
+.green {
+    color: #0D8044;
+}
+
+/* Mobile */ 
+
+@media (max-width: 625px) {
+	.leaflet-right.leaflet-top {
+	 	max-width: 230px; 
+	}
+}
