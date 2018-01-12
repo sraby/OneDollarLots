@@ -2,30 +2,40 @@ body {
     margin: 0px;
 }
 
-#header {
-    width: 100%;
-    height: 10vh;
-    position: absolute;
-    font-size: 2em;
-    font-family: 'Raleway-Light', sans-serif;
-    letter-spacing: 2.8;
-    color: white;
-    background-color: #A1A8AA;
-
-}
-
-.header-text {
-    position: absolute;
-    top: 20%;
-    left: 25px;
-}
 
 #mainmap {
 	width: 100%; 
-    height: 90vh;
-    top: 10vh;
+    height: 100vh;
     padding: 0%;
     font-family: 'Raleway', sans-serif;
+}
+
+#title {
+    position: absolute;
+    z-index: 1000;
+    left: 10px;
+    top: -15px;
+    font-family: 'Bernard MT Condensed', serif;
+    font-size: 4.7em;
+    letter-spacing: -0.7;
+    color: #47473e;
+    transform: scaleY(0.5);
+    width: 375px;
+    background-color: rgba(179, 193, 156, 0.6);
+    text-align: center;
+}
+
+#subtitle {
+    position: absolute;
+    z-index: 1000;
+    left: 20px;
+    top: 50px;
+    font-family: 'Raleway', sans-serif;
+    font-size: 1.5em;
+    font-weight: 900;
+    letter-spacing: 0.2;
+    line-height: 1.3;
+    color: #47473e;
 }
 
 #active {
@@ -35,6 +45,15 @@ body {
     font-size: 14px;
 }
 
+.leaflet-top.leaflet-left {
+    top: 90px;
+}
+
+.leaflet-bar a, .leaflet-bar a:hover {
+    width: 36px !important;
+    height: 36px !important;
+    line-height: 36px !important;
+}
 
 table {
     text-align: left;

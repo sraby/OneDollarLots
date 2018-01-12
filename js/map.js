@@ -2,9 +2,17 @@
 
 // var map = L.map('mainmap').setView([40.716303, -73.940535], 11);
 
-var map = L.map('mainmap').setView([40.716303, -73.940535], 11);
-      L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+var map = L.map('mainmap', {
+    center: [40.716303, -73.940535], 
+    zoom: 11,
+    zoomControl: false
+});
+
+L.control.zoom({position:'topright'}).addTo(map);
+
+L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
         maxZoom: 18,
+        opacity: 0.8,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attribution">CARTO</a>'
       }).addTo(map);
 
@@ -238,6 +246,8 @@ var overlays = {
 L.control.layers(baselayers, overlays).addTo(map);
 
 L.Control.geocoder().addTo(map);
+
+
 
 
 //LEGEND
