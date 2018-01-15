@@ -264,6 +264,8 @@ L.Control.geocoder().addTo(map);
 
 //LEGEND
 
+/* 
+
 var legend = L.control({position: 'bottomright'});
 
 legend.onAdd = function (map) {
@@ -283,6 +285,8 @@ var div = L.DomUtil.create('div', 'info legend'),
 };
 
 legend.addTo(map);
+
+*/ 
 
 //LEGEND AND LAYER TOGGLE 
 
