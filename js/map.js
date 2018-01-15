@@ -8,8 +8,6 @@ var map = L.map('mainmap', {
     zoomControl: false
 });
 
-L.control.zoom({position:'topright'}).addTo(map);
-
 L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
         maxZoom: 18,
         opacity: 0.8,
@@ -59,6 +57,17 @@ function getBorder(d)
                 d ==     'Pending For-Profit Developer' ? '#830B05':
                 '#830B05';
         }
+
+function getTextColor(d) {
+        return  d ==     'Pending HDFC Coop' ? '#3288bd':
+                d ==     'Sold HDFC Coop' ? '#3288bd':
+                d ==     'Pending Non-Profit Developer' ? '#72AE43':
+                d ==     'Sold Non-Profit Developer' ? '#72AE43':
+                d ==     'Pending For-Profit Developer/Non-Profit Developer' ? '#DDBB5A':
+                d ==     'Sold For-Profit Developer/Non-Profit Developer' ? '#DDBB5A':
+                d ==     'Pending For-Profit Developer' ? '#d73027':
+                '#d73027';
+}
 
 
 // INTERACTION
@@ -202,30 +211,31 @@ ODL_pending.addTo(map);
 
 ODL_sold.bindPopup(function (layer) {
     return L.Util.template('<h3>Sold for $1</h3>' 
-        + layer.feature.properties.Purchaser_Name + ', a <u>' + layer.feature.properties.Purchaser_Type + '</u>, bought this land from the city for one dollar on ' + layer.feature.properties.Date_Deed_Signed + '.<br>' +
+        + layer.feature.properties.Purchaser_Name + ', a ' + '<b style="color: ' + getTextColor(layer.feature.properties.Symbol) + ';">' + layer.feature.properties.Purchaser_Type + '</b>, bought this land from the city for one dollar on ' + layer.feature.properties.Date_Deed_Signed + '.<br>' +
             '<br><table>' + 
               '<tr><td>Borough</td><td>' + layer.feature.properties.Borough + '</td></tr>' + 
               '<tr><td>Block</td><td>' + layer.feature.properties.Block + '</td></tr>' +
               '<tr><td>Lot</td><td>' + layer.feature.properties.Lot + '</td></tr>' +
               '<tr><td>Address</td><td>' + layer.feature.properties.Address + '</td></tr>' +
-              '<tr><td>Link to City Notice</td><td><a target="_blank" href="' + layer.feature.properties.Link_to_Proposed_Disposition + '">Here</a></td></tr>' +
-              '<tr><td>Link to Deed </td><td><a target="_blank" href="' + layer.feature.properties.Link_to_Deed + '">Here</a></td></tr>' +
-              '</table>');
+              '</table><br>' +
+              '<a class="btn-grey" target="_blank" href="' + layer.feature.properties.Link_to_Proposed_Disposition + '">Link to City Notice >> </a> &emsp;' +
+              '<a class="btn-grey" target="_blank" href="' + layer.feature.properties.Link_to_Deed + '">Link to Deed >> </a>');
         });
 
 
 
 ODL_pending.bindPopup(function (layer) {
     return L.Util.template('<h3>Pending Sale for $1</h3>' 
-        + layer.feature.properties.Purchaser_Name + ', a <u>' + layer.feature.properties.Purchaser_Type + '</u>, was a proposed one-dollar buyer of this land in a notice posted on ' + layer.feature.properties.Date_Notice_was_Published + '.<br>' +
+        + layer.feature.properties.Purchaser_Name + ', a <b style="color: ' + getTextColor(layer.feature.properties.Symbol) + ';">' + layer.feature.properties.Purchaser_Type + '</b>, was a proposed one-dollar buyer of this land in a notice posted on ' + layer.feature.properties.Date_Notice_was_Published + '.<br>' +
             '<br><table>' + 
               '<tr><td>Borough</td><td>' + layer.feature.properties.Borough + '</td></tr>' + 
               '<tr><td>Block</td><td>' + layer.feature.properties.Block + '</td></tr>' +
               '<tr><td>Lot</td><td>' + layer.feature.properties.Lot + '</td></tr>' +
               '<tr><td>Address</td><td>' + layer.feature.properties.Address + '</td></tr>' +
-              '<tr><td>Link to City Notice</td><td><a target="_blank" href="' + layer.feature.properties.Link_to_Proposed_Disposition + '">Here</a></td></tr>' +
               '<tr><td>Date of Public Hearing</td><td>' + layer.feature.properties.Date_of_Public_Hearing + '</td></tr>' +
-              '</table>');
+              '</table><br>' + 
+              '<a class="btn-grey" target="_blank" href="' + layer.feature.properties.Link_to_Proposed_Disposition + '">Link to City Notice >> </a>'
+              );
         });
 
 map.on('popupopen', function(e) {
@@ -243,7 +253,9 @@ var overlays = {
     "Pending $1 Lots": ODL_pending
 };
 
-L.control.layers(baselayers, overlays).addTo(map);
+L.control.layers(baselayers, overlays, {collapsed: false}).addTo(map);
+
+L.control.zoom({position:'topright'}).addTo(map);
 
 L.Control.geocoder().addTo(map);
 
@@ -272,7 +284,7 @@ var div = L.DomUtil.create('div', 'info legend'),
 
 legend.addTo(map);
 
-//LEGEND TOGGLE 
+//LEGEND AND LAYER TOGGLE 
 
 showLegend = false; 
 
@@ -288,5 +300,9 @@ var toggleLegend = function(){
            showLegend = true;
         }
     }
+
+$('.leaflet-control-layers-overlays span').click(function() {
+    $(this).toggleClass('layer-selected')
+ });
 
  
