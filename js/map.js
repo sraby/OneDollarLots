@@ -253,7 +253,7 @@ var overlays = {
     "Pending $1 Lots": ODL_pending
 };
 
-L.control.layers(baselayers, overlays, {collapsed: false}).addTo(map);
+L.control.layers(baselayers, overlays, {position: 'topright', collapsed: false}).addTo(map);
 
 L.control.zoom({position:'topright'}).addTo(map);
 
@@ -288,25 +288,13 @@ legend.addTo(map);
 
 */ 
 
-//LEGEND AND LAYER TOGGLE 
-
-showLegend = false; 
-
-var toggleLegend = function(){
-        if(showLegend === true){
-           $('.legend').hide();
-           $('.legend-close-button').removeClass('legend-close-button').addClass('legend-toggle-button').html("<b>i</b>");
-           showLegend = false;  
-        }
-        else{
-           $('.legend').show(); 
-           $('.legend-toggle-button').removeClass('legend-toggle-button').addClass('legend-close-button').html("<b> &#10005;</b>");
-           showLegend = true;
-        }
-    }
+//LEGEND AND LAYER  
 
 $('.leaflet-control-layers-overlays span').click(function() {
     $(this).toggleClass('layer-selected')
  });
+
+$('.leaflet-control-layers-base').html("Layers:");
+
 
  
