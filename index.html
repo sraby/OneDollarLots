@@ -5,40 +5,31 @@
 		<link rel="icon" type="image/png" href="images/favicon.png">
 
 		<meta charset="UTF-8">
-		<meta name="description" content="This interactive map shows the difference between community income and city-wide AMI for all neighborhoods in New York City. Data comes from HUD, the ACS, and NYC Open Data.">
-		<meta name="keywords" content="Interactive,Map,Affordable,Housing,New,York,AMI">
+		<meta name="description" content="This interactive map shows all NYC 1$ land dispositions since November 2014.">
+		<meta name="keywords" content="Interactive,Map,Land,Sale,New,York,One,Dollar,$1,Housing,Developer">
 		<meta name="author" content="Sam Raby">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 		<link rel="stylesheet" href="css/style.css"/>
 	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.0-beta.2/leaflet.css">
-	    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 
 	   	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 	 	<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.0-beta.2/leaflet.js"></script>
-	    <script src='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.3.1/leaflet-omnivore.min.js'></script>
 
 	   	<!-- Mapbox GL -->
 		<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.42.2/mapbox-gl.css' rel='stylesheet' />
 		<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.42.2/mapbox-gl.js'></script>
+		<script src="//rawgit.com/mapbox/mapbox-gl-leaflet/master/leaflet-mapbox-gl.js"></script>
 
+		<!-- Geocoder Plugin--> 
 		<link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
 		<script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
 
 		<!-- Omnivore --> 
 	   	<script src='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.3.1/leaflet-omnivore.min.js'></script>
-	   	<script src="//rawgit.com/mapbox/mapbox-gl-leaflet/master/leaflet-mapbox-gl.js"></script>
-		
-
 	</head>
 	<body>
-		<!-- <div id="header">
-			<div class="header-text">ONE DOLLAR LOTS <div style="font-size:1.2em"> a map of all New York city land sold to developers for $1 since November 2014
-			</div>  
-			</div> 
-		</div> --> 
 		<div id="mainmap">
-			<!-- <img id="logo" src="images/logo.png"> -->
 			<div id="title"> 
 				<div class="box-logo">
 					<span class="box-logo-text"> 
@@ -53,7 +44,7 @@
 					</span> 
 					<span class="title-text">
 						LOTS
-					</span> 
+					</span>
 			</div>
 			<div class="subtitle">NYC land sold to developers for $1</div>
 
