@@ -32,7 +32,7 @@ var gl = L.mapboxGL({
 }).addTo(map); 
 */ 
 
-// SYMBOLOGY
+// SYMBOLOGY FUNCTIONS 
 
 function getColor(d) 
     {
@@ -182,17 +182,6 @@ var pendingData = L.geoJson(null, {
             filter: pendingFilter 
 });
 
-// HOVER TEXT 
-
-function numberWithCommas(x) {
-    x = x.toString();
-    var pattern = /(-?\d+)(\d{3})/;
-    while (pattern.test(x))
-        x = x.replace(pattern, "$1,$2");
-    return x;
-}
-
-
 // MAP DATA
 
 // Field Names: 
@@ -258,37 +247,6 @@ L.control.layers(baselayers, overlays, {position: 'topright', collapsed: false})
 L.control.zoom({position:'topright'}).addTo(map);
 
 L.Control.geocoder().addTo(map);
-
-
-
-
-//LEGEND
-
-/* 
-
-var legend = L.control({position: 'bottomright'});
-
-legend.onAdd = function (map) {
-
-var div = L.DomUtil.create('div', 'info legend'),
-    grades = [-45000, -30000, -15000, -5000, 5000, 15000, 30000, 45000, 60000],
-    labels = ["Text", "", "", "", "Text", "", "", "", "Text"];
-
-        div.innerHTML = div.innerHTML + '<b>One Dollar Lots Legend<b><br><br>'
-    for (var i = grades.length - 1; i > -1; i--) {
-        div.innerHTML +=
-            '<i style="background:' + getColor(grades[i] - 1) + '"></i> ' +
-                labels[i] + '<br>';
-    }
-
-    return div;
-};
-
-legend.addTo(map);
-
-*/ 
-
-//LEGEND AND LAYER  
 
 $('.leaflet-control-layers-overlays span').click(function() {
     $(this).toggleClass('layer-selected')
