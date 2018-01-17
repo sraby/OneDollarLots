@@ -50,6 +50,7 @@ b {
 }
 
 .title-text {
+    display: inline;
     font-weight: 500;
     font-size: 30px;
     position: relative;
@@ -59,7 +60,7 @@ b {
     letter-spacing: 0.3;
 }
 
-#subtitle {
+.subtitle {
     position: relative;
     z-index: 1000;
     left: 80px;
@@ -190,8 +191,14 @@ input[type="checkbox" i] {
 
 /* Mobile */ 
 
-@media (max-width: 625px) {
-	.leaflet-right.leaflet-top {
-	 	max-width: 230px; 
-	}
+@media (max-width: 500px) {
+    .title-text {
+        top: 5px;
+        font-size: 16px;
+        display: flex;
+    }
+
+    .subtitle {
+        display: none;  
+    }
 }
