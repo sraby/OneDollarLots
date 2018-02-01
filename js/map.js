@@ -185,9 +185,9 @@ var pendingData = L.geoJson(null, {
 // MAP DATA
 
 // Field Names: 
-// Status   Symbol  Project_Name    Purchaser_Type  Purchaser_Name  Details_and_Restrictions    Link_to_Proposed_Disposition    Source_of_Info  
-// Date_Notice_was_Published   Date_of_Public_Hearing  Borough BoroCode    Block   Lot Address Link_to_Deed    Date_Deed_Signed    Lot_Code    
-// Link_to_LivingLots  Address_Full    Lat    Long                              
+// Status   Symbol  Project_Name    Purchaser_Type  Purchaser_Name  Details_and_Restrictions    Restrictions_Source   Link_to_Proposed_Disposition  
+// Source_of_Info  Date_Notice_was_Published   Date_of_Public_Hearing  Borough BoroCode    Block   Lot Address Link_to_Deed    Date_Deed_Signed    
+// Lot_Code    Land_Use    Link_to_LivingLots  Link_to_Zola    Link_to_NYCommons   Address_Full    Latitude    Longitude                                                            
 
 var ODL_sold = omnivore.csv('data.csv', null, soldData);
 ODL_sold.addTo(map);
@@ -206,9 +206,11 @@ ODL_sold.bindPopup(function (layer) {
               '<tr><td>Block</td><td>' + layer.feature.properties.Block + '</td></tr>' +
               '<tr><td>Lot</td><td>' + layer.feature.properties.Lot + '</td></tr>' +
               '<tr><td>Address</td><td>' + layer.feature.properties.Address + '</td></tr>' +
+              '<tr><td>Housing Restrictions</td><td>' + layer.feature.properties.Details_and_Restrictions + '</td></tr>' +
               '</table><br>' +
               '<a class="btn-grey" target="_blank" href="' + layer.feature.properties.Link_to_Proposed_Disposition + '">Link to City Notice >> </a> &emsp;' +
-              '<a class="btn-grey" target="_blank" href="' + layer.feature.properties.Link_to_Deed + '">Link to Deed >> </a>');
+              '<a class="btn-grey" target="_blank" href="' + layer.feature.properties.Link_to_Deed + '">Link to Deed >> </a><br>' +
+              '<a class="btn-grey" target="_blank" href="' + layer.feature.properties.Link_to_Zola + '">Link to Detailed Lot Info >> </a>');
         });
 
 
@@ -221,10 +223,11 @@ ODL_pending.bindPopup(function (layer) {
               '<tr><td>Block</td><td>' + layer.feature.properties.Block + '</td></tr>' +
               '<tr><td>Lot</td><td>' + layer.feature.properties.Lot + '</td></tr>' +
               '<tr><td>Address</td><td>' + layer.feature.properties.Address + '</td></tr>' +
-              '<tr><td>Date of Public Hearing</td><td>' + layer.feature.properties.Date_of_Public_Hearing + '</td></tr>' +
+              '<tr><td>Current Land Use</td><td>' + layer.feature.properties.Land_Use + '</td></tr>' +
+              '<tr><td>Proposed Housing Restrictions</td><td>' + layer.feature.properties.Details_and_Restrictions + '</td></tr>' + 
               '</table><br>' + 
-              '<a class="btn-grey" target="_blank" href="' + layer.feature.properties.Link_to_Proposed_Disposition + '">Link to City Notice >> </a>'
-              );
+              '<a class="btn-grey" target="_blank" href="' + layer.feature.properties.Link_to_Proposed_Disposition + '">Link to City Notice >> </a><br>' +
+              '<a class="btn-grey" target="_blank" href="' + layer.feature.properties.Link_to_Zola + '">Link to Detailed Lot Info >> </a>');
         });
 
 map.on('popupopen', function(e) {
