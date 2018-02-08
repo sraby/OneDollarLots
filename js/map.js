@@ -1,8 +1,6 @@
 // BASEMAP
 
-// var map = L.map('mainmap').setView([40.716303, -73.940535], 11);
-
-var map = L.map('mainmap', {
+ var map = L.map('mainmap', {
     center: [40.716303, -73.940535], 
     zoom: 11,
     zoomControl: false
@@ -10,7 +8,7 @@ var map = L.map('mainmap', {
 
 L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
         maxZoom: 18,
-        opacity: 0.8,
+        opacity: 1,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attribution">CARTO</a>'
       }).addTo(map);
 
@@ -36,35 +34,29 @@ var gl = L.mapboxGL({
 
 function getColor(d) 
     {
-        return  d ==     'Pending HDFC Coop' ? '#3288bd':
-                d ==     'Sold HDFC Coop' ? '#3288bd':
-                d ==     'Pending Non-Profit Developer' ? '#91cf60':
-                d ==     'Sold Non-Profit Developer' ? '#91cf60':
-                d ==     'Pending For-Profit Developer/Non-Profit Developer' ? '#FFDD7C':
-                d ==     'Sold For-Profit Developer/Non-Profit Developer' ? '#FFDD7C':
-                d ==     'Pending For-Profit Developer' ? '#d73027':
-                '#d73027';
+        return  d ==     'Pending Non-Profit Developer' ? '#7EC069':
+                d ==     'Sold Non-Profit Developer' ? '#7EC069':
+                d ==     'Pending For-Profit Developer/Non-Profit Developer' ? '#F6D472':
+                d ==     'Sold For-Profit Developer/Non-Profit Developer' ? '#F6D472':
+                d ==     'Pending For-Profit Developer' ? '#D82B2F':
+                '#D82B2F';
         }
 
 function getBorder(d)
     {
-        return  d ==     'Pending HDFC Coop' ? '#0A5A89':
-                d ==     'Sold HDFC Coop' ? '#0A5A89':
-                d ==     'Pending Non-Profit Developer' ? '#538D26':
+        return  d ==     'Pending Non-Profit Developer' ? '#538D26':
                 d ==     'Sold Non-Profit Developer' ? '#538D26':
-                d ==     'Pending For-Profit Developer/Non-Profit Developer' ? '#BA9838':
-                d ==     'Sold For-Profit Developer/Non-Profit Developer' ? '#BA9838':
-                d ==     'Pending For-Profit Developer' ? '#830B05':
-                '#830B05';
+                d ==     'Pending For-Profit Developer/Non-Profit Developer' ? '#D4B047':
+                d ==     'Sold For-Profit Developer/Non-Profit Developer' ? '#D4B047':
+                d ==     'Pending For-Profit Developer' ? '#B01317':
+                '#B01317';
         }
 
 function getTextColor(d) {
-        return  d ==     'Pending HDFC Coop' ? '#3288bd':
-                d ==     'Sold HDFC Coop' ? '#3288bd':
-                d ==     'Pending Non-Profit Developer' ? '#72AE43':
-                d ==     'Sold Non-Profit Developer' ? '#72AE43':
-                d ==     'Pending For-Profit Developer/Non-Profit Developer' ? '#DDBB5A':
-                d ==     'Sold For-Profit Developer/Non-Profit Developer' ? '#DDBB5A':
+        return  d ==     'Pending Non-Profit Developer' ? '#69A748':
+                d ==     'Sold Non-Profit Developer' ? '#69A748':
+                d ==     'Pending For-Profit Developer/Non-Profit Developer' ? '#D4B047':
+                d ==     'Sold For-Profit Developer/Non-Profit Developer' ? '#D4B047':
                 d ==     'Pending For-Profit Developer' ? '#d73027':
                 '#d73027';
 }

@@ -169,8 +169,9 @@ input[type="checkbox" i] {
 }
 
 .legend {
-    background: rgba(256,256,256,.8);
+    background: rgba(256,256,256,1);
     border: 0px solid #47473e;
+    color: #333;
     border-radius: 4px;
     bottom: 30px;
     right: 10px;
@@ -193,8 +194,6 @@ input[type="checkbox" i] {
     width: 12px;
     opacity: 0.7;
 }
-
- 
 
 /* Mobile */ 
 
