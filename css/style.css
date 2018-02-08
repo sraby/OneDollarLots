@@ -210,8 +210,12 @@ input[type="checkbox" i] {
     }
 }
 
-@media (min-width: 500px) {
+@media (min-width: 650px) {
     #title {
+        display: block !important;
+    }
+
+    .subtitle {
         display: block !important;
     }
 

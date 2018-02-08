@@ -187,7 +187,8 @@ var pendingData = L.geoJson(null, {
 // Field Names: 
 // Status   Symbol  Project_Name    Purchaser_Type  Purchaser_Name  Details_and_Restrictions    Restrictions_Source   Link_to_Proposed_Disposition  
 // Source_of_Info  Date_Notice_was_Published   Date_of_Public_Hearing  Borough BoroCode    Block   Lot Address Link_to_Deed    Date_Deed_Signed    
-// Lot_Code    Land_Use    Link_to_LivingLots  Link_to_Zola    Link_to_NYCommons   Address_Full    Latitude    Longitude                                                            
+// Lot_Code    Land_Use    Link_to_LivingLots  Link_to_Zola    Link_to_NYCommons   Address_Full    Latitude Longitude   
+// Council_District    Community_District  Community_District_Code Community_District_Income   Percent_of_AMI                                                           
 
 var ODL_sold = omnivore.csv('data.csv', null, soldData);
 ODL_sold.addTo(map);
@@ -237,16 +238,25 @@ var council_districts = L.geoJson(councilDistricts, {
 
 // POP UPS 
 
+function numberWithCommas(x) {
+    x = x.toString();
+    var pattern = /(-?\d+)(\d{3})/;
+    while (pattern.test(x))
+        x = x.replace(pattern, "$1,$2");
+    return x;
+}
+
 ODL_sold.bindPopup(function (layer) {
     return L.Util.template('<h3>Sold for $1</h3>' 
         + layer.feature.properties.Purchaser_Name + ', a ' + '<b style="color: ' + getTextColor(layer.feature.properties.Symbol) + ';">' + layer.feature.properties.Purchaser_Type + '</b>, bought this land from the city for one dollar on ' + layer.feature.properties.Date_Deed_Signed + '.<br>' +
-            '<br><table>' + 
-              '<tr><td>Lot Code</td><td>' + layer.feature.properties.Borough + ' block ' + layer.feature.properties.Block + ', lot ' + layer.feature.properties.Lot + '</td></tr>' + 
-              //'<tr><td>Borough</td><td>' + layer.feature.properties.Borough + '</td></tr>' + 
-              //'<tr><td>Block</td><td>' + layer.feature.properties.Block + '</td></tr>' +
-              //'<tr><td>Lot</td><td>' + layer.feature.properties.Lot + '</td></tr>' +
+            '<table>' + 
+              '<tr><td>BBL</td><td>' + layer.feature.properties.Borough + ' block ' + layer.feature.properties.Block + ', lot ' + layer.feature.properties.Lot + '</td></tr>' + 
               '<tr><td>Address</td><td>' + layer.feature.properties.Address + '</td></tr>' +
-              '<tr><td>Housing Restrictions</td><td>' + layer.feature.properties.Details_and_Restrictions + '</td></tr>' +
+              '<tr><td>Districts</td><td> <a target="_blank" href="https://communityprofiles.planning.nyc.gov/' + layer.feature.properties.Borough.toLowerCase() + '/' + layer.feature.properties.Community_District + '">' +
+                    layer.feature.properties.Borough + " Community District " + layer.feature.properties.Community_District + '</a>, <br><a target="_blank" href="https://council.nyc.gov/district-' + layer.feature.properties.Council_District + '/">' +
+                    'City Council District ' + layer.feature.properties.Council_District + '</a></td></tr>' +
+              '<tr><td>Housing Restrictions</td><td>' + layer.feature.properties.Details_and_Restrictions + ' | <em><a target="_blank" href="' + layer.feature.properties.Restrictions_Source +'">source</a></em></td></tr>' +
+              '<tr><td>Community Median Income</td><td>$' + numberWithCommas(layer.feature.properties.Community_District_Income) + '<br>(' + (layer.feature.properties.Community_District_Income/859).toFixed(0)+ '% AMI for household of three)</td></tr>' + 
               '</table><br>' +
               '<a class="btn-grey" target="_blank" href="' + layer.feature.properties.Link_to_Proposed_Disposition + '">City Record Notice >> </a> &emsp;' +
               '<a class="btn-grey" target="_blank" href="' + layer.feature.properties.Link_to_Deed + '">Deed >> </a><br>' +
@@ -258,15 +268,16 @@ ODL_sold.bindPopup(function (layer) {
 ODL_pending.bindPopup(function (layer) {
     return L.Util.template('<h3>Pending Sale for $1</h3>' 
         + layer.feature.properties.Purchaser_Name + ', a <b style="color: ' + getTextColor(layer.feature.properties.Symbol) + ';">' + layer.feature.properties.Purchaser_Type + '</b>, was a proposed one-dollar buyer of this land in a notice posted on ' + layer.feature.properties.Date_Notice_was_Published + '.<br>' +
-            '<br><table>' + 
-              '<tr><td>Lot Code</td><td>' + layer.feature.properties.Borough + ' block ' + layer.feature.properties.Block + ', lot ' + layer.feature.properties.Lot + '</td></tr>' + 
-              //'<tr><td>Borough</td><td>' + layer.feature.properties.Borough + '</td></tr>' + 
-              //'<tr><td>Block</td><td>' + layer.feature.properties.Block + '</td></tr>' +
-              //'<tr><td>Lot</td><td>' + layer.feature.properties.Lot + '</td></tr>' +
+            '<table>' + 
+              '<tr><td>BBL</td><td>' + layer.feature.properties.Borough + ' block ' + layer.feature.properties.Block + ', lot ' + layer.feature.properties.Lot + '</td></tr>' + 
               '<tr><td>Address</td><td>' + layer.feature.properties.Address + '</td></tr>' +
+              '<tr><td>Districts</td><td> <a target="_blank" href="https://communityprofiles.planning.nyc.gov/' + layer.feature.properties.Borough.toLowerCase() + '/' + layer.feature.properties.Community_District + '">' +
+                    layer.feature.properties.Borough + " Community District " + layer.feature.properties.Community_District + '</a>, <br><a target="_blank" href="https://council.nyc.gov/district-' + layer.feature.properties.Council_District + '/">' +
+                    'City Council District ' + layer.feature.properties.Council_District + '</a></td></tr>' +
               '<tr><td>Current Land Use</td><td>' + layer.feature.properties.Land_Use + '</td></tr>' +
-              '<tr><td>Proposed Housing Restrictions</td><td>' + layer.feature.properties.Details_and_Restrictions + '</td></tr>' + 
-              '</table><br>' + 
+              '<tr><td>Housing Restrictions</td><td>' + layer.feature.properties.Details_and_Restrictions + ' | <em><a target="_blank" href="' + layer.feature.properties.Restrictions_Source +'">source</a></em></td></tr>' +
+              '<tr><td>Community Median Income</td><td>$' + numberWithCommas(layer.feature.properties.Community_District_Income) + '<br>(' + (layer.feature.properties.Community_District_Income/859).toFixed(0)+ '% AMI for household of three)</td></tr>' + 
+              '</table><br>' +
               '<a class="btn-grey" target="_blank" href="' + layer.feature.properties.Link_to_Proposed_Disposition + '">City Record Notice >> </a><br>' +
               '<a class="btn-grey" target="_blank" href="' + layer.feature.properties.Link_to_Zola + '">Detailed Lot Info (ZoLa) >> </a>');
         });
@@ -278,12 +289,15 @@ map.on('popupopen', function(e) {
     $(".legend").css("display","none");
     $(".leaflet-control-container").css("display","none");
     $("#title").css("display","none");
+    $(".subtitle").css("display","none");
+
 });
 
 map.on('popupclose', function(e) {
     $(".legend").css("display","block");
     $(".leaflet-control-container").css("display","block");
     $("#title").css("display","block");
+    $(".subtitle").css("display","block");
 });
 
 // LAYER CONTROL
