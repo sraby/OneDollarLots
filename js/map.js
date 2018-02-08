@@ -248,9 +248,9 @@ ODL_sold.bindPopup(function (layer) {
               '<tr><td>Address</td><td>' + layer.feature.properties.Address + '</td></tr>' +
               '<tr><td>Housing Restrictions</td><td>' + layer.feature.properties.Details_and_Restrictions + '</td></tr>' +
               '</table><br>' +
-              '<a class="btn-grey" target="_blank" href="' + layer.feature.properties.Link_to_Proposed_Disposition + '">Link to City Notice >> </a> &emsp;' +
-              '<a class="btn-grey" target="_blank" href="' + layer.feature.properties.Link_to_Deed + '">Link to Deed >> </a><br>' +
-              '<a class="btn-grey" target="_blank" href="' + layer.feature.properties.Link_to_Zola + '">Link to Detailed Lot Info >> </a>');
+              '<a class="btn-grey" target="_blank" href="' + layer.feature.properties.Link_to_Proposed_Disposition + '">City Record Notice >> </a> &emsp;' +
+              '<a class="btn-grey" target="_blank" href="' + layer.feature.properties.Link_to_Deed + '">Deed >> </a><br>' +
+              '<a class="btn-grey" target="_blank" href="' + layer.feature.properties.Link_to_Zola + '">Detailed Lot Info (ZoLa) >> </a>');
         });
 
 
@@ -267,8 +267,8 @@ ODL_pending.bindPopup(function (layer) {
               '<tr><td>Current Land Use</td><td>' + layer.feature.properties.Land_Use + '</td></tr>' +
               '<tr><td>Proposed Housing Restrictions</td><td>' + layer.feature.properties.Details_and_Restrictions + '</td></tr>' + 
               '</table><br>' + 
-              '<a class="btn-grey" target="_blank" href="' + layer.feature.properties.Link_to_Proposed_Disposition + '">Link to City Notice >> </a><br>' +
-              '<a class="btn-grey" target="_blank" href="' + layer.feature.properties.Link_to_Zola + '">Link to Detailed Lot Info >> </a>');
+              '<a class="btn-grey" target="_blank" href="' + layer.feature.properties.Link_to_Proposed_Disposition + '">City Record Notice >> </a><br>' +
+              '<a class="btn-grey" target="_blank" href="' + layer.feature.properties.Link_to_Zola + '">Detailed Lot Info (ZoLa) >> </a>');
         });
 
 map.on('popupopen', function(e) {
