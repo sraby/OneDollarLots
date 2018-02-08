@@ -196,15 +196,55 @@ var ODL_pending = omnivore.csv('data.csv', null, pendingData);
 ODL_pending.addTo(map);
 
 
+// COMMUNITY DISTRICTS DATA
+
+var reference = map.createPane('reference'); 
+
+map.getPane('reference').style.zIndex = 250;
+
+function commStyle(feature) {
+    return {
+        weight: 1,
+        color: '#999',
+        fillColor: 'rgba(0,0,0,0)',
+        dashArray: 2,
+        pane: reference 
+    };
+}
+
+var community_districts = L.geoJson(commDistricts, {
+    style: commStyle,
+    interactive: false
+});
+
+// COUNCIL DISTRICTS DATA
+
+function councilStyle(feature) {
+    return {
+        weight: 1,
+        color: '#789ACB',
+        fillColor: 'rgba(0,0,0,0)',
+        dashArray: 2,
+        pane: reference 
+    };
+}
+
+var council_districts = L.geoJson(councilDistricts, {
+    style: councilStyle,
+    interactive: false
+});
+
+
 // POP UPS 
 
 ODL_sold.bindPopup(function (layer) {
     return L.Util.template('<h3>Sold for $1</h3>' 
         + layer.feature.properties.Purchaser_Name + ', a ' + '<b style="color: ' + getTextColor(layer.feature.properties.Symbol) + ';">' + layer.feature.properties.Purchaser_Type + '</b>, bought this land from the city for one dollar on ' + layer.feature.properties.Date_Deed_Signed + '.<br>' +
             '<br><table>' + 
-              '<tr><td>Borough</td><td>' + layer.feature.properties.Borough + '</td></tr>' + 
-              '<tr><td>Block</td><td>' + layer.feature.properties.Block + '</td></tr>' +
-              '<tr><td>Lot</td><td>' + layer.feature.properties.Lot + '</td></tr>' +
+              '<tr><td>Lot Code</td><td>' + layer.feature.properties.Borough + ' block ' + layer.feature.properties.Block + ', lot ' + layer.feature.properties.Lot + '</td></tr>' + 
+              //'<tr><td>Borough</td><td>' + layer.feature.properties.Borough + '</td></tr>' + 
+              //'<tr><td>Block</td><td>' + layer.feature.properties.Block + '</td></tr>' +
+              //'<tr><td>Lot</td><td>' + layer.feature.properties.Lot + '</td></tr>' +
               '<tr><td>Address</td><td>' + layer.feature.properties.Address + '</td></tr>' +
               '<tr><td>Housing Restrictions</td><td>' + layer.feature.properties.Details_and_Restrictions + '</td></tr>' +
               '</table><br>' +
@@ -219,9 +259,10 @@ ODL_pending.bindPopup(function (layer) {
     return L.Util.template('<h3>Pending Sale for $1</h3>' 
         + layer.feature.properties.Purchaser_Name + ', a <b style="color: ' + getTextColor(layer.feature.properties.Symbol) + ';">' + layer.feature.properties.Purchaser_Type + '</b>, was a proposed one-dollar buyer of this land in a notice posted on ' + layer.feature.properties.Date_Notice_was_Published + '.<br>' +
             '<br><table>' + 
-              '<tr><td>Borough</td><td>' + layer.feature.properties.Borough + '</td></tr>' + 
-              '<tr><td>Block</td><td>' + layer.feature.properties.Block + '</td></tr>' +
-              '<tr><td>Lot</td><td>' + layer.feature.properties.Lot + '</td></tr>' +
+              '<tr><td>Lot Code</td><td>' + layer.feature.properties.Borough + ' block ' + layer.feature.properties.Block + ', lot ' + layer.feature.properties.Lot + '</td></tr>' + 
+              //'<tr><td>Borough</td><td>' + layer.feature.properties.Borough + '</td></tr>' + 
+              //'<tr><td>Block</td><td>' + layer.feature.properties.Block + '</td></tr>' +
+              //'<tr><td>Lot</td><td>' + layer.feature.properties.Lot + '</td></tr>' +
               '<tr><td>Address</td><td>' + layer.feature.properties.Address + '</td></tr>' +
               '<tr><td>Current Land Use</td><td>' + layer.feature.properties.Land_Use + '</td></tr>' +
               '<tr><td>Proposed Housing Restrictions</td><td>' + layer.feature.properties.Details_and_Restrictions + '</td></tr>' + 
@@ -234,15 +275,27 @@ map.on('popupopen', function(e) {
     var location = map.project(e.popup._latlng); 
     location.y -= e.popup._container.clientHeight/2;
     map.panTo(map.unproject(location),{animate: true}); 
+    $(".legend").css("display","none");
+    $(".leaflet-control-container").css("display","none");
+    $("#title").css("display","none");
+});
+
+map.on('popupclose', function(e) {
+    $(".legend").css("display","block");
+    $(".leaflet-control-container").css("display","block");
+    $("#title").css("display","block");
 });
 
 // LAYER CONTROL
 
-var baselayers = {};
+var baselayers = {
+};
 
 var overlays = {
     "Sold $1 Lots": ODL_sold,
-    "Pending $1 Lots": ODL_pending
+    "Pending $1 Lots": ODL_pending,
+    "Community Districts": community_districts, 
+    "Council Districts": council_districts
 };
 
 L.control.layers(baselayers, overlays, {position: 'topright', collapsed: false}).addTo(map);
@@ -256,6 +309,8 @@ $('.leaflet-control-layers-overlays span').click(function() {
  });
 
 $('.leaflet-control-layers-base').html("Layers:");
+
+$('.leaflet-control-layers-overlays span:contains(Districts)').toggleClass('layer-selected');
 
 
  
