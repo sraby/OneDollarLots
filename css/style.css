@@ -206,7 +206,7 @@ input[type="checkbox" i] {
     }
 
     .subtitle {
-        display: none;  
+        display: none !important;  
     }
 }
 
@@ -215,15 +215,14 @@ input[type="checkbox" i] {
         display: block !important;
     }
 
-    .subtitle {
-        display: block !important;
-    }
-
     .legend {
         display: block !important;
     }
 
     .leaflet-control-container {
+        display: block !important;
+    }
+    .subtitle {
         display: block !important;
     }
 }

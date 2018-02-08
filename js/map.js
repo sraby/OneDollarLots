@@ -256,14 +256,12 @@ ODL_sold.bindPopup(function (layer) {
                     layer.feature.properties.Borough + " Community District " + layer.feature.properties.Community_District + '</a>, <br><a target="_blank" href="https://council.nyc.gov/district-' + layer.feature.properties.Council_District + '/">' +
                     'City Council District ' + layer.feature.properties.Council_District + '</a></td></tr>' +
               '<tr><td>Housing Restrictions</td><td>' + layer.feature.properties.Details_and_Restrictions + ' | <em><a target="_blank" href="' + layer.feature.properties.Restrictions_Source +'">source</a></em></td></tr>' +
-              '<tr><td>Community Median Income</td><td>$' + numberWithCommas(layer.feature.properties.Community_District_Income) + '<br>(' + (layer.feature.properties.Community_District_Income/859).toFixed(0)+ '% AMI for household of three)</td></tr>' + 
+              '<tr><td>Community District Income</td><td>$' + numberWithCommas(layer.feature.properties.Community_District_Income) + ' median<br>(' + (layer.feature.properties.Community_District_Income/859).toFixed(0)+ '% AMI for household of three)</td></tr>' + 
               '</table><br>' +
               '<a class="btn-grey" target="_blank" href="' + layer.feature.properties.Link_to_Proposed_Disposition + '">City Record Notice >> </a> &emsp;' +
               '<a class="btn-grey" target="_blank" href="' + layer.feature.properties.Link_to_Deed + '">Deed >> </a><br>' +
               '<a class="btn-grey" target="_blank" href="' + layer.feature.properties.Link_to_Zola + '">Detailed Lot Info (ZoLa) >> </a>');
         });
-
-
 
 ODL_pending.bindPopup(function (layer) {
     return L.Util.template('<h3>Pending Sale for $1</h3>' 
@@ -276,7 +274,7 @@ ODL_pending.bindPopup(function (layer) {
                     'City Council District ' + layer.feature.properties.Council_District + '</a></td></tr>' +
               '<tr><td>Current Land Use</td><td>' + layer.feature.properties.Land_Use + '</td></tr>' +
               '<tr><td>Housing Restrictions</td><td>' + layer.feature.properties.Details_and_Restrictions + ' | <em><a target="_blank" href="' + layer.feature.properties.Restrictions_Source +'">source</a></em></td></tr>' +
-              '<tr><td>Community Median Income</td><td>$' + numberWithCommas(layer.feature.properties.Community_District_Income) + '<br>(' + (layer.feature.properties.Community_District_Income/859).toFixed(0)+ '% AMI for household of three)</td></tr>' + 
+              '<tr><td>Community District Income</td><td>$' + numberWithCommas(layer.feature.properties.Community_District_Income) + ' median<br>(' + (layer.feature.properties.Community_District_Income/859).toFixed(0)+ '% AMI for household of three)</td></tr>' + 
               '</table><br>' +
               '<a class="btn-grey" target="_blank" href="' + layer.feature.properties.Link_to_Proposed_Disposition + '">City Record Notice >> </a><br>' +
               '<a class="btn-grey" target="_blank" href="' + layer.feature.properties.Link_to_Zola + '">Detailed Lot Info (ZoLa) >> </a>');
@@ -322,7 +320,7 @@ $('.leaflet-control-layers-overlays span').click(function() {
     $(this).toggleClass('layer-selected')
  });
 
-$('.leaflet-control-layers-base').html("Layers:");
+$('.leaflet-control-layers-base').html("<b>Data:</b> (as of 2/1/18)");
 
 $('.leaflet-control-layers-overlays span:contains(Districts)').toggleClass('layer-selected');
 
