@@ -34,30 +34,30 @@ var gl = L.mapboxGL({
 
 function getColor(d) 
     {
-        return  d ==     'Pending Non-Profit Developer' ? '#7EC069':
-                d ==     'Sold Non-Profit Developer' ? '#7EC069':
-                d ==     'Pending For-Profit Developer/Non-Profit Developer' ? '#F6D472':
-                d ==     'Sold For-Profit Developer/Non-Profit Developer' ? '#F6D472':
-                d ==     'Pending For-Profit Developer' ? '#D82B2F':
+        return  d ==     'Pending non-profit developer' ? '#7EC069':
+                d ==     'Sold non-profit developer' ? '#7EC069':
+                d ==     'Pending for-profit/non-profit group' ? '#F6D472':
+                d ==     'Sold for-profit/non-profit group' ? '#F6D472':
+                d ==     'Pending for-profit developer' ? '#D82B2F':
                 '#D82B2F';
         }
 
 function getBorder(d)
     {
-        return  d ==     'Pending Non-Profit Developer' ? '#538D26':
-                d ==     'Sold Non-Profit Developer' ? '#538D26':
-                d ==     'Pending For-Profit Developer/Non-Profit Developer' ? '#D4B047':
-                d ==     'Sold For-Profit Developer/Non-Profit Developer' ? '#D4B047':
-                d ==     'Pending For-Profit Developer' ? '#B01317':
+        return  d ==     'Pending non-profit developer' ? '#538D26':
+                d ==     'Sold non-profit developer' ? '#538D26':
+                d ==     'Pending for-profit/non-profit group' ? '#D4B047':
+                d ==     'Sold for-profit/non-profit group' ? '#D4B047':
+                d ==     'Pending for-profit developer' ? '#B01317':
                 '#B01317';
         }
 
 function getTextColor(d) {
-        return  d ==     'Pending Non-Profit Developer' ? '#69A748':
-                d ==     'Sold Non-Profit Developer' ? '#69A748':
-                d ==     'Pending For-Profit Developer/Non-Profit Developer' ? '#D4B047':
-                d ==     'Sold For-Profit Developer/Non-Profit Developer' ? '#D4B047':
-                d ==     'Pending For-Profit Developer' ? '#d73027':
+        return  d ==     'Pending non-profit developer' ? '#69A748':
+                d ==     'Sold non-profit developer' ? '#69A748':
+                d ==     'Pending for-profit/non-profit group' ? '#D4B047':
+                d ==     'Sold for-profit/non-profit group' ? '#D4B047':
+                d ==     'Pending for-profit developer' ? '#d73027':
                 '#d73027';
 }
 
@@ -244,8 +244,8 @@ ODL_sold.bindPopup(function (layer) {
             '<table>' + 
               '<tr><td>BBL</td><td>' + layer.feature.properties.Borough + ' block ' + layer.feature.properties.Block + ', lot ' + layer.feature.properties.Lot + '</td></tr>' + 
               '<tr><td>Address</td><td>' + layer.feature.properties.Address + '</td></tr>' +
-              '<tr><td>Districts</td><td> <a target="_blank" href="https://communityprofiles.planning.nyc.gov/' + layer.feature.properties.Borough.toLowerCase() + '/' + layer.feature.properties.Community_District + '">' +
-                    layer.feature.properties.Borough + " Community District " + layer.feature.properties.Community_District + '</a>, <br><a target="_blank" href="https://council.nyc.gov/district-' + layer.feature.properties.Council_District + '/">' +
+              '<tr><td>Districts</td><td> <a target="_blank" href="https://communityprofiles.planning.nyc.gov/' + layer.feature.properties.Borough.toLowerCase() + '/' + layer.feature.properties.Community_District + '" style="color: ' + getTextColor(layer.feature.properties.Symbol) + ';">' +
+                    layer.feature.properties.Borough + " Community District " + layer.feature.properties.Community_District + '</a>, <br><a style="color: ' + getTextColor(layer.feature.properties.Symbol) + ' ;" target="_blank" href="https://council.nyc.gov/district-' + layer.feature.properties.Council_District + '/">' +
                     'City Council District ' + layer.feature.properties.Council_District + '</a></td></tr>' +
               '<tr><td>Housing Restrictions</td><td>' + layer.feature.properties.Details_and_Restrictions + ' | <em><a target="_blank" href="' + layer.feature.properties.Restrictions_Source +'">source</a></em></td></tr>' +
               '<tr><td>Community District Income</td><td>$' + numberWithCommas(layer.feature.properties.Community_District_Income) + ' median<br>(' + (layer.feature.properties.Community_District_Income/859).toFixed(0)+ '% AMI for household of three)</td></tr>' + 
