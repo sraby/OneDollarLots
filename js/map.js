@@ -247,7 +247,7 @@ ODL_sold.bindPopup(function (layer) {
               '<tr><td>Districts</td><td> <a target="_blank" href="https://communityprofiles.planning.nyc.gov/' + layer.feature.properties.Borough.toLowerCase() + '/' + layer.feature.properties.Community_District + '" style="color: ' + getTextColor(layer.feature.properties.Symbol) + ';">' +
                     layer.feature.properties.Borough + " Community District " + layer.feature.properties.Community_District + '</a>, <br><a style="color: ' + getTextColor(layer.feature.properties.Symbol) + ' ;" target="_blank" href="https://council.nyc.gov/district-' + layer.feature.properties.Council_District + '/">' +
                     'City Council District ' + layer.feature.properties.Council_District + '</a></td></tr>' +
-              '<tr><td>Housing Restrictions</td><td>' + layer.feature.properties.Details_and_Restrictions + ' | <em><a target="_blank" href="' + layer.feature.properties.Restrictions_Source +'">source</a></em></td></tr>' +
+              '<tr><td>Housing Restrictions</td><td>' + layer.feature.properties.Details_and_Restrictions + ' | <a style="color: ' + getTextColor(layer.feature.properties.Symbol) + ' ;" target="_blank" href="' + layer.feature.properties.Restrictions_Source +'">source</a></td></tr>' +
               '<tr><td>Community District Income</td><td>$' + numberWithCommas(layer.feature.properties.Community_District_Income) + ' median<br>(' + (layer.feature.properties.Community_District_Income/859).toFixed(0)+ '% AMI for household of three)</td></tr>' + 
               '</table><br>' +
               '<a class="btn-grey" target="_blank" href="' + layer.feature.properties.Link_to_Proposed_Disposition + '">City Record Notice >> </a> &emsp;' +
