@@ -316,7 +316,7 @@ $('.leaflet-control-layers-base').append(dateUpdated,")");
 
 $('.leaflet-control-layers-overlays span:contains(Districts)').toggleClass('layer-selected');
 
-showAbout = true;
+showAbout = false;
 
 var toggleAbout = function(){
         if(showAbout === true){
