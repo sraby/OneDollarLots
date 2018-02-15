@@ -331,12 +331,16 @@ var toggleAbout = function(){
 
 document.getElementById('about').innerHTML = '<div><button class="about-close-button" onclick="toggleAbout();" style="outline: none;"><b>✕</b></button></div>' +
 '<h3>ABOUT</h3>Since January, 2014, the city of New York has sold <b>' + soldCount + 
-'</b> city-owned lots of land to housing developers for $1.00 each.' + '<hr style="height:0px; visibility:hidden;" />' + 
+'</b> city-owned lots of land to housing developers for $1.00 each.' + 
+    '<hr style="height:0px; visibility:hidden;" />' + 
 'Some of this land has gone to organizations doing valuable and necessary work for the city—' + 
 ' developing homes for the extremely-low income, establishing shelters for LGBT youth.' +
-'Some of this land has also gone to for-profit housing developers building market-rate apartments or affordable units too expensive for a local to live in. ' + '<hr style="height:0px; visibility:hidden;" />' + 
+'Some of this land has also gone to for-profit housing developers building market-rate apartments or affordable units too expensive for a local to live in. ' + 
+    '<hr style="height:0px; visibility:hidden;" />' + 
 'The <b>ONE DOLLAR LOTS</b> project by 596 Acres is an archive of these $1 lot sales as well as a tool for organizers to use to take action against' + 
-'pending sales that may disrupt their communities. <b>' + pendingCount + ' lots are still pending final sale.';
+'pending sales that may disrupt their communities. <b>' + pendingCount + ' </b>lots are still pending final sale.' + 
+    '<hr style="height:0px; visibility:hidden;" />' //+ 
+//'This site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>.';
 
 
  

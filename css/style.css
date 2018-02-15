@@ -21,6 +21,7 @@ a:hover {
 }
 
 #about {
+    display: none;
     height: 100%;
     font-family: 'Nunito Sans', sans-serif;
     letter-spacing: 0.2px;
