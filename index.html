@@ -48,7 +48,11 @@
 					</span>
 			</div>
 			<div class="subtitle">NYC land sold to developers for $1</div>
-
+			<div>
+				<button class="about-button" onclick="toggleAbout();" style="outline: none;">
+					About this map
+				</button>
+			</div>	
 			<div class="legend">
 					<b> Land bought for $1 by a: </b> 
 		        <div>
@@ -65,9 +69,13 @@
 		        </div>
 		    </div>
     	</div>
+    	<div id="about">
+    		<div><button class="about-close-button" onclick="toggleLegend();" style="outline: none;"><b>✕</b></button></div>	
+    	</div>
 			<!-- SCRIPT --> 
 			<script type="text/javascript" src="js/commDistricts.js"></script>	
 			<script type="text/javascript" src="js/councilDistricts.js"></script>
+			<script type="text/javascript" src="js/variables.js"></script>
 			<script type="text/javascript" src="js/map.js"></script>
 	</body>
 </html>
