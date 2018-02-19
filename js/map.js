@@ -173,6 +173,30 @@ var pendingData = L.geoJson(null, {
             filter: pendingFilter 
 });
 
+function soldfpFilter(feature) {
+  if (feature.properties.Symbol === "Sold for-profit developer") return true
+}
+
+function soldnpFilter(feature) {
+  if (feature.properties.Status === "Sold non-profit developer") return true
+}
+
+function soldfpnpFilter(feature) {
+  if (feature.properties.Status === "Sold for-profit/non-profit group") return true
+}
+
+var soldfpData = L.geoJson(null, {
+            filter: soldfpFilter 
+});
+
+var soldnpData = L.geoJson(null, {
+            filter: soldnpFilter 
+});
+
+var soldfpnpData = L.geoJson(null, {
+            filter: soldfpnpFilter 
+});
+
 // MAP DATA
 
 // Field Names: 
@@ -186,6 +210,12 @@ ODL_sold.addTo(map);
 
 var ODL_pending = omnivore.csv('data.csv', null, pendingData);
 ODL_pending.addTo(map);
+
+var ODL_soldfp = omnivore.csv('data.csv', null, soldfpData);
+
+var ODL_soldnp = omnivore.csv('data.csv', null, soldnpData);
+
+var ODL_soldfpnp = omnivore.csv('data.csv', null, soldfpnpData);
 
 // COMMUNITY DISTRICTS DATA
 
@@ -267,7 +297,7 @@ ODL_pending.bindPopup(function (layer) {
               '<tr><td>Community District Income</td><td>$' + numberWithCommas(layer.feature.properties.Community_District_Income) + ' median<br>(' + (layer.feature.properties.Community_District_Income/859).toFixed(0)+ '% AMI for household of three)</td></tr>' + 
               '</table><hr style="height:0px; visibility:hidden;" />' +
               '<a class="btn-grey" style="background-color:' + getTextColor(layer.feature.properties.Symbol) + ';" target="_blank" href="' + layer.feature.properties.Link_to_Proposed_Disposition + '">City Record notice</a>' +
-              '<a class="btn-grey" style="background-color:' + getTextColor(layer.feature.properties.Symbol) + ';" target="_blank" href="mailto:organizers@596acres.org">Contact to organize >></a>' +
+              '<a class="btn-grey" style="background-color:' + getTextColor(layer.feature.properties.Symbol) + ';" target="_blank" href="mailto:organizers@596acres.org">Contact to organize</a>' +
               '<a class="btn-grey" style="background-color:' + getTextColor(layer.feature.properties.Symbol) + ';" target="_blank" href="' + layer.feature.properties.Link_to_Zola + '">Detailed lot info (ZoLa)</a>');
         });
 
@@ -279,7 +309,7 @@ map.on('popupopen', function(e) {
     $(".leaflet-control-container").css("display","none");
     $("#title").css("display","none");
     $(".subtitle").css("display","none");
-
+    $(".about-button").css("display","none");
 });
 
 map.on('popupclose', function(e) {
@@ -287,6 +317,7 @@ map.on('popupclose', function(e) {
     $(".leaflet-control-container").css("display","block");
     $("#title").css("display","block");
     $(".subtitle").css("display","block");
+    $(".about-button").css("display","block");
 });
 
 // LAYER CONTROL
@@ -329,17 +360,18 @@ var toggleAbout = function(){
         }
     }
 
-document.getElementById('about').innerHTML = '<div><button class="about-close-button" onclick="toggleAbout();" style="outline: none;"><b>✕</b></button></div>' +
-'<h3>ABOUT</h3>Since January, 2014, the city of New York has sold <b>' + soldCount + 
-'</b> city-owned lots of land to housing developers for $1.00 each.' + 
+map.on('layeradd', function(e) {document.getElementById('about').innerHTML = '<div><button class="about-close-button" onclick="toggleAbout();" style="outline: none;"><b>✕</b></button></div>' +
+//'<h3>' + ODL_sold.getLayers().length + ' sold: ' + ODL_soldfp.getLayers().length + ' to for-profits, ' + ODL_soldnp.getLayers().length + ' to non-profits, ' + ODL_soldfpnp.getLayers().length + ' to for-profit/non-profit groups. </h3>'
+'<h3>ABOUT</h3>Since January, 2014, the city of New York has sold <b>' + ODL_sold.getLayers().length + 
+'</b> city-owned lots of land to housing developers for $1.00 each. ' + 
     '<hr style="height:0px; visibility:hidden;" />' + 
 'Some of this land has gone to organizations doing valuable and necessary work for the city—' + 
 ' developing homes for the extremely-low income, establishing shelters for LGBT youth.' +
 'Some of this land has also gone to for-profit housing developers building market-rate apartments or affordable units too expensive for a local to live in. ' + 
     '<hr style="height:0px; visibility:hidden;" />' + 
 'The <b>ONE DOLLAR LOTS</b> project by 596 Acres is an archive of these $1 lot sales as well as a tool for organizers to use to take action against' + 
-'pending sales that may disrupt their communities. <b>' + pendingCount + ' </b>lots are still pending final sale.' + 
-    '<hr style="height:0px; visibility:hidden;" />' //+ 
+' pending sales that may disrupt their communities. <b>' + ODL_pending.getLayers().length + ' </b>lots are still pending final sale.' + 
+    '<hr style="height:0px; visibility:hidden;" />'; }); //+ 
 //'This site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>.';
 
 

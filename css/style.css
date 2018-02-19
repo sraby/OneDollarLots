@@ -267,7 +267,12 @@ input[type="checkbox" i] {
     .leaflet-control-container {
         display: block !important;
     }
+
     .subtitle {
+        display: block !important;
+    }
+    
+    .about-button {
         display: block !important;
     }
 }
