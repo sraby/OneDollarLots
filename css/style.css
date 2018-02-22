@@ -7,8 +7,12 @@ body {
     height: 100%;
 }
 
+b {
+    font-weight: 700;
+}
+
 a:hover {
-    font-weight: 750;
+    font-weight: 700;
     font-size: 11.6px;
 }
 
@@ -23,16 +27,25 @@ a:hover {
 
 #about {
     display: none;
-    height: 100%;
+    min-height: 100%;
     font-family: 'Nunito Sans', sans-serif;
     letter-spacing: 0.2px;
     position: relative;
     overflow: scroll;
+    overflow-y: hidden;
     background-color: #eee;
     z-index: 9000;
     padding: 90px 30px 30px 30px;
     color: #47473e;
     font-size: 1.2em;
+}
+
+#about a{
+  color: #47473e;  
+}
+
+#about a:hover {
+    font-size: 0.985em !important;
 }
 
 .about-button {

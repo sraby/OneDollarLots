@@ -12,24 +12,6 @@ L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attribution">CARTO</a>'
       }).addTo(map);
 
-// SMOOTH ZOOM: 
-/* mapboxgl.accessToken = 'pk.eyJ1IjoiNTk2YWNyZXMiLCJhIjoiY2piNDAyenUxN3h5bjJ3cnoxaWZvZHVxMiJ9.XEq_QixSEwo3wWlFZpmVXg';
-var map = new mapboxgl.Map({
-    container: 'mainmap',
-    style: 'mapbox://styles/mapbox/light-v9'
-});
-*/
-
-/* MAPBOX DARK
-
-var token = "pk.eyJ1IjoiNTk2YWNyZXMiLCJhIjoiY2piNDAyenUxN3h5bjJ3cnoxaWZvZHVxMiJ9.XEq_QixSEwo3wWlFZpmVXg";
-
-var gl = L.mapboxGL({
-    accessToken: token,
-    style: 'mapbox://styles/mapbox/dark-v9'
-}).addTo(map); 
-*/ 
-
 // SYMBOLOGY FUNCTIONS 
 
 function getColor(d) 
@@ -207,6 +189,24 @@ function numberWithCommas(x) {
     return x;
 }
 
+function edcText(x) {
+    if (x == "EDC Board Meeting Minutes") {
+        return "during an EDC board meeting on "
+    }
+    else {
+        return "in a notice posted on "
+    }
+}
+
+function edcButton(x) {
+    if (x == "EDC Board Meeting Minutes") {
+        return "EDC meeting notes"
+    }
+    else {
+        return "City record notice"
+    }
+}
+
 ODL_sold.bindPopup(function (layer) {
     return L.Util.template('<h3>Sold for $1</h3>' 
         + layer.feature.properties.Purchaser_Name + ', a ' + '<b style="color: ' + getTextColor(layer.feature.properties.Symbol) + ';">' + layer.feature.properties.Purchaser_Type + '</b>, bought this land from the city for one dollar on ' + layer.feature.properties.Date_Deed_Signed + '.<br>' +
@@ -219,14 +219,15 @@ ODL_sold.bindPopup(function (layer) {
               '<tr><td>Housing Restrictions</td><td>' + layer.feature.properties.Details_and_Restrictions + ' | <a style="color: ' + getTextColor(layer.feature.properties.Symbol) + ' ;" target="_blank" href="' + layer.feature.properties.Restrictions_Source +'">source</a></td></tr>' +
               '<tr><td>Community District Income</td><td>$' + numberWithCommas(layer.feature.properties.Community_District_Income) + ' median<br>(' + (layer.feature.properties.Community_District_Income/859).toFixed(0)+ '% AMI for household of three)</td></tr>' + 
               '</table><hr style="height:0px; visibility:hidden;" />' +
-              '<a class="btn-grey" style="background-color:' + getTextColor(layer.feature.properties.Symbol) + ';" target="_blank" href="' + layer.feature.properties.Link_to_Proposed_Disposition + '">City Record notice</a>' +
+              '<a class="btn-grey" style="background-color:' + getTextColor(layer.feature.properties.Symbol) + ';" target="_blank" href="' + layer.feature.properties.Link_to_Proposed_Disposition + '">' + edcButton(layer.feature.properties.Source_of_Info) + '</a>' +
               '<a class="btn-grey" style="background-color:' + getTextColor(layer.feature.properties.Symbol) + ';" target="_blank" href="' + layer.feature.properties.Link_to_Deed + '">Deed</a>' +
               '<a class="btn-grey" style="background-color:' + getTextColor(layer.feature.properties.Symbol) + ';" target="_blank" href="' + layer.feature.properties.Link_to_Zola + '">Detailed lot info (ZoLa)</a>');
         });
 
 ODL_pending.bindPopup(function (layer) {
     return L.Util.template('<h3>Pending Sale for $1</h3>' 
-        + layer.feature.properties.Purchaser_Name + ', a <b style="color: ' + getTextColor(layer.feature.properties.Symbol) + ';">' + layer.feature.properties.Purchaser_Type + '</b>, was a proposed one-dollar buyer of this land in a notice posted on ' + layer.feature.properties.Date_Notice_was_Published + '.<br>' +
+        + layer.feature.properties.Purchaser_Name + ', a <b style="color: ' + getTextColor(layer.feature.properties.Symbol) + ';">' + layer.feature.properties.Purchaser_Type + '</b>, was a proposed one-dollar buyer of this land ' + 
+            edcText(layer.feature.properties.Source_of_Info) + layer.feature.properties.Date_Notice_was_Published + '.<br>' +
             '<table>' + 
               '<tr><td>BBL</td><td>' + layer.feature.properties.Borough + ' block ' + layer.feature.properties.Block + ', lot ' + layer.feature.properties.Lot + '</td></tr>' + 
               '<tr><td>Address</td><td>' + layer.feature.properties.Address + '</td></tr>' +
@@ -237,7 +238,7 @@ ODL_pending.bindPopup(function (layer) {
               '<tr><td>Housing Restrictions</td><td>' + layer.feature.properties.Details_and_Restrictions + ' | <a style="color: ' + getTextColor(layer.feature.properties.Symbol) + ' ;" target="_blank" href="' + layer.feature.properties.Restrictions_Source +'">source</a></td></tr>' +
               '<tr><td>Community District Income</td><td>$' + numberWithCommas(layer.feature.properties.Community_District_Income) + ' median<br>(' + (layer.feature.properties.Community_District_Income/859).toFixed(0)+ '% AMI for household of three)</td></tr>' + 
               '</table><hr style="height:0px; visibility:hidden;" />' +
-              '<a class="btn-grey" style="background-color:' + getTextColor(layer.feature.properties.Symbol) + ';" target="_blank" href="' + layer.feature.properties.Link_to_Proposed_Disposition + '">City Record notice</a>' +
+              '<a class="btn-grey" style="background-color:' + getTextColor(layer.feature.properties.Symbol) + ';" target="_blank" href="' + layer.feature.properties.Link_to_Proposed_Disposition + '">' + edcButton(layer.feature.properties.Source_of_Info) + '</a>' +
               '<a class="btn-grey" style="background-color:' + getTextColor(layer.feature.properties.Symbol) + ';" target="_blank" href="mailto:organizers@596acres.org">Contact to organize</a>' +
               '<a class="btn-grey" style="background-color:' + getTextColor(layer.feature.properties.Symbol) + ';" target="_blank" href="' + layer.feature.properties.Link_to_Zola + '">Detailed lot info (ZoLa)</a>');
         });
@@ -275,18 +276,21 @@ var overlays = {
 
 L.control.layers(baselayers, overlays, {position: 'topright', collapsed: false}).addTo(map);
 
-L.control.zoom({position:'topright'}).addTo(map);
-
-L.Control.geocoder().addTo(map);
-
 $('.leaflet-control-layers-overlays span').click(function() {
     $(this).toggleClass('layer-selected')
- });
+});
 
 $('.leaflet-control-layers-base').html("<b>Data:</b> (as of ");
 $('.leaflet-control-layers-base').append(dateUpdated,")");
 
 $('.leaflet-control-layers-overlays span:contains(Districts)').toggleClass('layer-selected');
+
+// OTHER CONTROLS
+
+L.control.zoom({position:'topright'}).addTo(map);
+L.Control.geocoder().addTo(map);
+
+// ABOUT PAGE
 
 showAbout = false;
 
@@ -302,19 +306,79 @@ var toggleAbout = function(){
     }
 
 map.on('layeradd', function(e) { document.getElementById('about').innerHTML = 
-'<div class="about-banner"></div>' +
-'<div><button class="about-close-button" onclick="toggleAbout();" style="outline: none;"><b>✕</b></button></div>' +
-'<h3>ABOUT</h3>Since January, 2014, the city of New York has sold <b>' + ODL_sold.getLayers().length + 
-'</b> city-owned lots of land to housing developers for $1.00 each. ' + 
-    '<hr style="height:0px; visibility:hidden;" />' + 
-'Some of this land has gone to organizations doing valuable and necessary work for the city—' + 
-' developing homes for the extremely-low income, establishing shelters for LGBT youth.' +
-'Some of this land has also gone to for-profit housing developers building market-rate apartments or affordable units too expensive for a local to live in. ' + 
-    '<hr style="height:0px; visibility:hidden;" />' + 
-'The <b>ONE DOLLAR LOTS</b> project by 596 Acres is an archive of these $1 lot sales as well as a tool for organizers to use to take action against' + 
-' pending sales that may disrupt their communities. <b>' + ODL_pending.getLayers().length + ' </b>lots are still pending final sale.' + 
-    '<hr style="height:0px; visibility:hidden;" />'; }); //+ 
-//'This site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>.';
+    '<div class="about-banner"></div>' +
+    '<div><button class="about-close-button" onclick="toggleAbout();" style="outline: none;"><b>✕</b></button></div>' +
+'<h3>ABOUT</h3>' + 
+    'Since January, 2014, the city of New York has sold <b>' + ODL_sold.getLayers().length + 
+    '</b> city-owned lots of land to housing developers for $1.00 each. ' + 
+        '<hr style="height:0px; visibility:hidden;" />' + 
+    'Some of this land has gone to organizations doing valuable and necessary work for the city—' + 
+    ' developing permanent homes for the extremely-low income, establishing ' + 
+    '<a href="https://www.dnainfo.com/new-york/20160823/east-village/bea-arthur-lgbt-homeless-shelter-slated-for-completion-feb-2017" target="_blank">shelters for LGBT youth</a>. ' +
+    'Some of this land has also gone to for-profit housing developers building ' + 
+    '<a href="http://www.nydailynews.com/new-york/hpd-plans-sell-prime-land-1-private-developer-article-1.2092855" target="_blank">market-rate apartments</a> ' + 
+    'or "affordable" units too expensive for a local to live in. ' +
+    'And this is happening with <a href="https://citylimits.org/2016/06/14/cityviews-city-giving-away-land-with-little-public-discussion/" target="_blank">few opportunities</a> for input from those most impacted.' +
+        '<hr style="height:0px; visibility:hidden;" />' + 
+    'The ONE DOLLAR LOTS project by <a href="http://596acres.org/" target="_blank">596 Acres</a> is an archive of these $1 lot sales. It is also a place for organizers and local residents to get information about ' + 
+    'pending sales that may disrupt their communities and imagine better uses for cheap public land. <b>' + ODL_pending.getLayers().length + ' </b> lots are still pending final sale.' + 
+'<h3>METHODOLOGY</h3>' +
+    'Any time the City plans to sell public land for $1, it posts a "Disposition Notice" in the ' +
+    'online <a href="https://a856-cityrecord.nyc.gov/Search/AdvancedCity" target="_blank">City Records database</a>. We tracked ' + 
+    'all of these notices posted since January 2014 and we added them to our "pending" list of $1 sales. Sometimes, we also found potential $1 sales in ' + 
+    '<a href="https://www.nycedc.com/about-nycedc/financial-public-documents" target="_blank">EDC board meeting mintues</a>.' +
+        '<hr style="height:0px; visibility:hidden;" />' + 
+    'For each pending sale, we used the <a href="https://a836-acris.nyc.gov/DS/DocumentSearch/BBL" target="_blank">ACRIS database</a> to check if the sale had taken place. ' + 
+    'A deed tells us when the land was sold and who it was sold to. Each time we found a deed, we transferred the $1 lot from our "pending" list to our "sold" list.' + 
+        '<hr style="height:0px; visibility:hidden;" />' + 
+    'Also on <a href="https://a836-acris.nyc.gov/DS/DocumentSearch/BBL" target="_blank">ACRIS</a>, ' +
+    'each deed is posted along with a regulatory agreement that spells out certain restrictions on how the developer must use the land. This is crucial information: these agreements almost always include ' +
+    'the target income brackets for any new housing units and how long these restrictions last— a good indicator of how useful any new housing may be for the local community.' + 
+'<h3>USING THE MAP</h3>' + 
+    'In the upper-right, click on the map controls to toggle different layers on and off, zoom in and out, and locate an address.' + 
+        '<hr style="height:0px; visibility:hidden;" />' + 
+    'Click on a point on the map to view all details regarding a $1 sale. To see general demogprahic information about the area the lot is in, click on the "Community District" link. ' + 
+    'To contact the local Council Member, click on the "City Council District" link.' +
+        '<hr style="height:0px; visibility:hidden;" />' + 
+    'When clicking on a point, make sure to look at the "Housing Restrictions" section and compare it to "Community District Income." This gives an idea of how useful this land sale may be to locals.' + 
+    ' Keep in mind: <b> a non-profit developer is not necessarily serving the commmunity well</b>. If you need more detailed information on restrictions, click on the "source" link to see the proposal/regulatory agreement regarding the sale.' +
+'<h3>WHY IT MATTERS</h3>' +
+    'Public land is a priceless resource. Historically, it’s been a way for groups of residents of NYC to create the places we know we need to survive and thrive. ' + 
+    'Kept public, or given away cheaply to groups organized specifically to ensure long-term public benefit like community land trusts, public land has become deeply and permanently affordable housing, community, cooperative, cultural and commercial spaces, and so much more. ' + 
+    'Public land is a great starting place for actualizing the city as commons!' +  
+        '<hr style="height:0px; visibility:hidden;" />' + 
+    'The vacant city-owned lots that have been sold for $1 largely resulted from decades of institutionally racist land use policies including ' +
+    '<a href="https://native-land.ca" target="_blank">settler colonialism</a>, ' +
+    '<a href="https://dsl.richmond.edu/panorama/redlining/#loc=5/39.105/-94.583&amp;opacity=0.8" target="_blank">redlining</a>, ' +
+    'and <a href="http://urbanreviewer.org" target="_blank">Urban Renewal Area clearance</a>. ' +
+    'Many of these lots have been languishing in the middle of active blocks primarily in neighborhoods where communities of color live for years, fenced off by the government but otherwise not maintained. '+ 
+    'Fast forward to 2014, and the city has been selling them without input from the people who have long dealt with the real life impact of abandoned land in their lives. ' +
+    'This squanders potential opportunities for transforming historical violence, and for creating lasting, adaptive public benefit.' +
+'<h3>OTHER HELPFUL LINKS</h3>' +
+    '<b>• <a href="https://livinglotsnyc.org/" target="_blank">LivingLots</a></b>, ' + 
+    'a web tool that supports local organizing campaigns to turn vacant lots into community-stewarded land.' +
+        '<hr style="height:0px; visibility:hidden;" />' + 
+    '<b>• <a href="https://nycommons.org/" target="_blank">NYCommons</a></b>, ' + 
+    'a map of pending developments on different kinds of public spaces.' + 
+        '<hr style="height:0px; visibility:hidden;" />' + 
+    '<b>• <a href="http://lghttp.58547.nexcesscdn.net/803F44A/images/nycss/images/uploads/pubs/housing_new_york_-_FINAL_9_20_17.pdf" target="_blank">"Taking Stock" report</a></b>, ' +
+    'a data-driven independent review of common concerns surrounding the Housing New York plan, by Community Service Society.' +
+'<h3>CONTACT US</h3>' + 
+    '<b>Email:</b> <a href="mailto:organizers@596acres.org" target="_blank">organizers@596acres.org</a><br>' +
+    '<b>Phone:</b> (718) 316-6092<br>' + 
+    '<b>Website:</b> <a href="http://596acres.org/" target="_blank">596acres.org</a>.' +
+'<h3>CREDITS</h3>' +
+    'This map was created by <a href="http://596acres.org/" target="_blank">596 Acres</a> with help from some of our friends and partners.' +
+        '<hr style="height:0px; visibility:hidden;" />' +
+    '<b>Methodology:</b> Tiera Mack, Paula Segal, Cea Weaver<br>' +
+    '<b>Data gathering:</b> Tiera Mack, Sam Raby, Paula Segal, Cea Weaver<br>' + 
+    '<b>Web tool development:</b> Sam Raby<br>' +
+    '<b>Special thanks:</b> Stephanie Alvarado, Mara Kravitz, Oksana Mironova from <a href="http://www.cssny.org/" target="_blank">CSS</a>, ' + 
+    'Stephanie Sosa and Christopher Walters from <a href="https://anhd.org/" target="_blank">ANHD</a>' +
+'<h3>LICENSE</h3>' +
+    'This site is licensed through Creative Commons under the ' + 
+    '<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a> license.' +
+''; }); 
 
 
  
