@@ -318,7 +318,7 @@ map.on('layeradd', function(e) { document.getElementById('about').innerHTML =
     'Some of this land has also gone to for-profit housing developers building ' + 
     '<a href="http://www.nydailynews.com/new-york/hpd-plans-sell-prime-land-1-private-developer-article-1.2092855" target="_blank">market-rate apartments</a> ' + 
     'or "affordable" units too expensive for a local to live in. ' +
-    'And this is happening with <a href="https://citylimits.org/2016/06/14/cityviews-city-giving-away-land-with-little-public-discussion/" target="_blank">few opportunities</a> for input from those most impacted.' +
+    'And these sales are happening with <a href="https://citylimits.org/2016/06/14/cityviews-city-giving-away-land-with-little-public-discussion/" target="_blank">few opportunities</a> for input from those most impacted.' +
         '<hr style="height:0px; visibility:hidden;" />' + 
     'The ONE DOLLAR LOTS project by <a href="http://596acres.org/" target="_blank">596 Acres</a> is an archive of these $1 lot sales. It is also a place for organizers and local residents to get information about ' + 
     'pending sales that may disrupt their communities and imagine better uses for cheap public land. <b>' + ODL_pending.getLayers().length + ' </b> lots are still pending final sale.' + 
@@ -355,18 +355,18 @@ map.on('layeradd', function(e) { document.getElementById('about').innerHTML =
     'Fast forward to 2014, and the city has been selling them without input from the people who have long dealt with the real life impact of abandoned land in their lives. ' +
     'This squanders potential opportunities for transforming historical violence, and for creating lasting, adaptive public benefit.' +
 '<h3>OTHER HELPFUL LINKS</h3>' +
-    '<b>• <a href="https://livinglotsnyc.org/" target="_blank">LivingLots</a></b>, ' + 
+    '• <a href="https://livinglotsnyc.org/" target="_blank">LivingLots</a>, ' + 
     'a web tool that supports local organizing campaigns to turn vacant lots into community-stewarded land.' +
         '<hr style="height:0px; visibility:hidden;" />' + 
-    '<b>• <a href="https://nycommons.org/" target="_blank">NYCommons</a></b>, ' + 
+    '• <a href="https://nycommons.org/" target="_blank">NYCommons</a>, ' + 
     'a map of pending developments on different kinds of public spaces.' + 
         '<hr style="height:0px; visibility:hidden;" />' + 
-    '<b>• <a href="http://lghttp.58547.nexcesscdn.net/803F44A/images/nycss/images/uploads/pubs/housing_new_york_-_FINAL_9_20_17.pdf" target="_blank">"Taking Stock" report</a></b>, ' +
+    '• <a href="http://lghttp.58547.nexcesscdn.net/803F44A/images/nycss/images/uploads/pubs/housing_new_york_-_FINAL_9_20_17.pdf" target="_blank">"Taking Stock" report</a>, ' +
     'a data-driven independent review of common concerns surrounding the Housing New York plan, by Community Service Society.' +
 '<h3>CONTACT US</h3>' + 
     '<b>Email:</b> <a href="mailto:organizers@596acres.org" target="_blank">organizers@596acres.org</a><br>' +
     '<b>Phone:</b> (718) 316-6092<br>' + 
-    '<b>Website:</b> <a href="http://596acres.org/" target="_blank">596acres.org</a>.' +
+    '<b>Website:</b> <a href="http://596acres.org/" target="_blank">596acres.org</a>' +
 '<h3>CREDITS</h3>' +
     'This map was created by <a href="http://596acres.org/" target="_blank">596 Acres</a> with help from some of our friends and partners.' +
         '<hr style="height:0px; visibility:hidden;" />' +
