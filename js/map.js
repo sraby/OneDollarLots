@@ -122,35 +122,6 @@ function pointToLayer(feature, latlng) {
     );
 }
 
-
-/* TWO SEPARATE SYMBOLOGIES
-
-function pointToLayerSold(feature, latlng) {
-    return L.circleMarker(latlng, 
-        {
-            radius: 7,
-            fillColor: getColor(feature.properties.Symbol),
-            weight: 0,
-            fillOpacity: 0.6
-        }
-    );
-}
-
-function pointToLayerPending(feature, latlng) {
-    return L.circleMarker(latlng, 
-        {
-            radius: 7,
-            color: getBorder(feature.properties.Symbol),
-            fillColor: getColor(feature.properties.Symbol),
-            weight: 2,
-            opacity: 0.6,
-            fillOpacity: 0.6
-        }
-    );
-}
-
-*/
-
 // FILTERING 
 
 function soldFilter(feature) {
@@ -173,30 +144,6 @@ var pendingData = L.geoJson(null, {
             filter: pendingFilter 
 });
 
-function soldfpFilter(feature) {
-  if (feature.properties.Symbol === "Sold for-profit developer") return true
-}
-
-function soldnpFilter(feature) {
-  if (feature.properties.Status === "Sold non-profit developer") return true
-}
-
-function soldfpnpFilter(feature) {
-  if (feature.properties.Status === "Sold for-profit/non-profit group") return true
-}
-
-var soldfpData = L.geoJson(null, {
-            filter: soldfpFilter 
-});
-
-var soldnpData = L.geoJson(null, {
-            filter: soldnpFilter 
-});
-
-var soldfpnpData = L.geoJson(null, {
-            filter: soldfpnpFilter 
-});
-
 // MAP DATA
 
 // Field Names: 
@@ -210,12 +157,6 @@ ODL_sold.addTo(map);
 
 var ODL_pending = omnivore.csv('data.csv', null, pendingData);
 ODL_pending.addTo(map);
-
-var ODL_soldfp = omnivore.csv('data.csv', null, soldfpData);
-
-var ODL_soldnp = omnivore.csv('data.csv', null, soldnpData);
-
-var ODL_soldfpnp = omnivore.csv('data.csv', null, soldfpnpData);
 
 // COMMUNITY DISTRICTS DATA
 
@@ -360,8 +301,8 @@ var toggleAbout = function(){
         }
     }
 
-map.on('layeradd', function(e) {document.getElementById('about').innerHTML = '<div><button class="about-close-button" onclick="toggleAbout();" style="outline: none;"><b>✕</b></button></div>' +
-//'<h3>' + ODL_sold.getLayers().length + ' sold: ' + ODL_soldfp.getLayers().length + ' to for-profits, ' + ODL_soldnp.getLayers().length + ' to non-profits, ' + ODL_soldfpnp.getLayers().length + ' to for-profit/non-profit groups. </h3>'
+map.on('layeradd', function(e) { document.getElementById('about').innerHTML = 
+'<div><button class="about-close-button" onclick="toggleAbout();" style="outline: none;"><b>✕</b></button></div>' +
 '<h3>ABOUT</h3>Since January, 2014, the city of New York has sold <b>' + ODL_sold.getLayers().length + 
 '</b> city-owned lots of land to housing developers for $1.00 each. ' + 
     '<hr style="height:0px; visibility:hidden;" />' + 
