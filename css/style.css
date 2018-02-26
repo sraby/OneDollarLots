@@ -15,9 +15,14 @@ b {
     font-style: italic;
 }
 
-a:hover {
+.leaflet-popup-pane a:hover {
     font-weight: 700;
     font-size: 11.6px;
+}
+
+#about a:hover {
+    font-weight: 700;
+    font-size: 0.985em !important;
 }
 
 #mainmap {
@@ -46,10 +51,6 @@ a:hover {
 
 #about a{
   color: #47473e;  
-}
-
-#about a:hover {
-    font-size: 0.985em !important;
 }
 
 .about-button {
@@ -246,6 +247,10 @@ input[type="checkbox" i] {
     padding: 6px !important;
     font-size: 1.1em;
 }
+
+/* .leaflet-control-zoom {
+    font-size: 18px !important;
+} */ 
 
 .legend {
     background: rgba(256,256,256,1);
