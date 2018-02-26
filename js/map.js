@@ -288,7 +288,17 @@ $('.leaflet-control-layers-overlays span:contains(Districts)').toggleClass('laye
 // OTHER CONTROLS
 
 L.control.zoom({position:'topright'}).addTo(map);
-L.Control.geocoder().addTo(map);
+
+var searchControl = L.esri.Geocoding.geosearch({position:'topright'}).addTo(map);
+
+var results = L.layerGroup().addTo(map);
+
+searchControl.on("results", function(data) {
+    results.clearLayers();
+    for (var i = data.results.length - 1; i >= 0; i--) {
+        results.addLayer(L.marker(data.results[i].latlng));
+    }
+});
 
 // ABOUT PAGE
 
@@ -332,19 +342,20 @@ map.on('layeradd', function(e) { document.getElementById('about').innerHTML =
     'A deed tells us when the land was sold and who it was sold to. Each time we found a deed, we transferred the $1 lot from our "pending" list to our "sold" list.' + 
         '<hr style="height:0px; visibility:hidden;" />' + 
     'Also on <a href="https://a836-acris.nyc.gov/DS/DocumentSearch/BBL" target="_blank">ACRIS</a>, ' +
-    'each deed is posted along with a regulatory agreement that spells out certain restrictions on how the developer must use the land. This is crucial information: these agreements almost always include ' +
-    'the target income brackets for any new housing units and how long these restrictions last— a good indicator of how useful any new housing may be for the local community.' + 
+    'each deed is posted along with a regulatory agreement that spells out certain restrictions on how the developer must use the land. This is crucial information: these agreements include ' +
+    'what target incomes any new housing must be built for and how long these affordability restrictions last— good indicators of how useful new housing may be for the local community.' + 
 '<h3>USING THE MAP</h3>' + 
     'In the upper-right, click on the map controls to toggle different layers on and off, zoom in and out, and locate an address.' + 
         '<hr style="height:0px; visibility:hidden;" />' + 
-    'Click on a point on the map to view all details regarding a $1 sale. To see general demogprahic information about the area the lot is in, click on the "Community District" link. ' + 
+    'Click on a point on the map to view all details regarding a $1 sale. To see general demographic information about the area the lot is in, click on the "Community District" link. ' + 
     'To contact the local Council Member, click on the "City Council District" link.' +
         '<hr style="height:0px; visibility:hidden;" />' + 
     'When clicking on a point, make sure to look at the "Housing Restrictions" section and compare it to "Community District Income." This gives an idea of how useful this land sale may be to locals.' + 
     ' Keep in mind: <b> a non-profit developer is not necessarily serving the commmunity well</b>. If you need more detailed information on restrictions, click on the "source" link to see the proposal/regulatory agreement regarding the sale.' +
 '<h3>WHY IT MATTERS</h3>' +
     'Public land is a priceless resource. Historically, it’s been a way for groups of residents of NYC to create the places we know we need to survive and thrive. ' + 
-    'Kept public, or given away cheaply to groups organized specifically to ensure long-term public benefit like community land trusts, public land has become deeply and permanently affordable housing, community, cooperative, cultural and commercial spaces, and so much more. ' + 
+    'Kept public, or given away cheaply to groups organized specifically to ensure long-term public benefit like community land trusts, ' +
+    'public land has become deeply and permanently affordable housing, community, cooperative, cultural and commercial spaces, and so much more. ' + 
     'Public land is a great starting place for actualizing the city as commons!' +  
         '<hr style="height:0px; visibility:hidden;" />' + 
     'The vacant city-owned lots that have been sold for $1 largely resulted from decades of institutionally racist land use policies including ' +
@@ -370,11 +381,15 @@ map.on('layeradd', function(e) { document.getElementById('about').innerHTML =
 '<h3>CREDITS</h3>' +
     'This map was created by <a href="http://596acres.org/" target="_blank">596 Acres</a> with help from some of our friends and partners.' +
         '<hr style="height:0px; visibility:hidden;" />' +
-    '<b>Methodology:</b> Tiera Mack, Paula Segal, Cea Weaver<br>' +
-    '<b>Data gathering:</b> Tiera Mack, Sam Raby, Paula Segal, Cea Weaver<br>' + 
-    '<b>Web tool development:</b> Sam Raby<br>' +
-    '<b>Special thanks:</b> Stephanie Alvarado, Mara Kravitz, Oksana Mironova from <a href="http://www.cssny.org/" target="_blank">CSS</a>, ' + 
-    'Stephanie Sosa and Christopher Walters from <a href="https://anhd.org/" target="_blank">ANHD</a>' +
+    '<b>Methodology:</b><br><span class="ita">Tiera Mack</span>, MUP Student<br><span class="ita">Paula Z. Segal</span>, Esq., Equitable Neighborhoods Practice, Community Development Project @eqneighborhoods<br> ' +
+    '<span class="ita">Cea Weaver</span>, Research & Policy Director, New York Communities for Change<br>' +
+        '<hr style="height:0px; visibility:hidden;" />' +
+    '<b>Data gathering:<br></b><span class="ita">Tiera Mack</span><br><span class="ita">Sam Raby</span>, 596 Acres Web Tools Developer Intern<br><span class="ita">Paula Z. Segal</span><br><span class="ita">Cea Weaver</span><br>' + 
+        '<hr style="height:0px; visibility:hidden;" />' +
+    '<b>Web tool development:</b><br><span class="ita">Sam Raby</span><br>' +
+        '<hr style="height:0px; visibility:hidden;" />' +
+    '<b>Special thanks:<br></b><span class="ita">Stephanie Alvarado</span> and <span class="ita">Mara Kravitz</span>, Directors of Advocacy and Partnerships at 596 Acres<br><span class="ita">Oksana Mironova</span>, <a href="http://www.cssny.org/" target="_blank">CSS</a><br> ' + 
+    '<span class="ita">Stephanie Sosa</span> and <span class="ita">Christopher Walters</span> from <a href="https://anhd.org/" target="_blank">ANHD</a>' +
 '<h3>LICENSE</h3>' +
     'This site is licensed through Creative Commons under the ' + 
     '<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a> license.' +

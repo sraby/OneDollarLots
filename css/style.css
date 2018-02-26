@@ -11,6 +11,10 @@ b {
     font-weight: 700;
 }
 
+.ita {
+    font-style: italic;
+}
+
 a:hover {
     font-weight: 700;
     font-size: 11.6px;
