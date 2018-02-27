@@ -74,7 +74,7 @@ b {
 .about-close-button {
     right: 10px;
     top: 10px;
-    position: fixed;
+    position: absolute;
     font-size: 32px;
     z-index: 10000;
     background-color: rgba(0,0,0,0);
@@ -161,7 +161,7 @@ b {
 #logo-596 { 
     right: 60px;
     top: 13.5px;
-    position: fixed;
+    position: absolute;
     z-index: 10000;
     opacity: 0.8;
 }
