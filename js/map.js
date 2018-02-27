@@ -365,12 +365,13 @@ map.on('layeradd', function(e) { document.getElementById('about').innerHTML =
     'Many of these lots have been languishing in the middle of active blocks primarily in neighborhoods where communities of color live for years, fenced off by the government but otherwise not maintained. '+ 
     'Fast forward to 2014, and the city has been selling them without input from the people who have long dealt with the real life impact of abandoned land in their lives. ' +
     'This squanders potential opportunities for transforming historical violence, and for creating lasting, adaptive public benefit.' +
-'<h3>OTHER HELPFUL LINKS</h3>' +
+'<h3>HELPFUL LINKS</h3>' +
     '• <a href="https://livinglotsnyc.org/" target="_blank">LivingLots</a>, ' + 
-    'a web tool that supports local organizing campaigns to turn vacant lots into community-stewarded land.' +
+    'a web tool that supports local organizing campaigns to turn vacant lots into community-stewarded land. Created by <a href="http://596acres.org/" target="_blank">596 Acres</a>.' +
         '<hr style="height:0px; visibility:hidden;" />' + 
     '• <a href="https://nycommons.org/" target="_blank">NYCommons</a>, ' + 
-    'a map of pending developments on different kinds of public spaces.' + 
+    'a map of different places the public owns with information for local community land access organizing, including any pending sales. ' +
+    'Created through collaboration between <a href="http://www.commoncause.org/states/new-york/" target="_blank">Common Cause/NY</a>, the <a href="http://cdp.urbanjustice.org/" target="_blank">Community Development Project at the Urban Justice Center</a>, and <a href="/admin/page/page/3/change/596acres.org" target="_blank">596 Acres</a>.' + 
         '<hr style="height:0px; visibility:hidden;" />' + 
     '• <a href="http://lghttp.58547.nexcesscdn.net/803F44A/images/nycss/images/uploads/pubs/housing_new_york_-_FINAL_9_20_17.pdf" target="_blank">"Taking Stock" report</a>, ' +
     'a data-driven independent review of common concerns surrounding the Housing New York plan, by Community Service Society.' +
@@ -381,15 +382,24 @@ map.on('layeradd', function(e) { document.getElementById('about').innerHTML =
 '<h3>CREDITS</h3>' +
     'This map was created by <a href="http://596acres.org/" target="_blank">596 Acres</a> with help from some of our friends and partners.' +
         '<hr style="height:0px; visibility:hidden;" />' +
-    '<b>Methodology:</b><br><span class="ita">Tiera Mack</span>, MUP Student<br><span class="ita">Paula Z. Segal</span>, Esq., Equitable Neighborhoods Practice, Community Development Project @eqneighborhoods<br> ' +
-    '<span class="ita">Cea Weaver</span>, Research & Policy Director, New York Communities for Change<br>' +
+    '<b>Methodology:</b><br>' + 
+    '<span class="ita">• Tiera Mack</span>, MUP Student<br>' +
+    '<span class="ita">• Paula Z. Segal</span>, Esq., Equitable Neighborhoods Practice, Community Development Project @eqneighborhoods<br> ' +
+    '<span class="ita">• Cea Weaver</span>, Research & Policy Director, New York Communities for Change<br>' +
         '<hr style="height:0px; visibility:hidden;" />' +
-    '<b>Data gathering:<br></b><span class="ita">Tiera Mack</span><br><span class="ita">Sam Raby</span>, 596 Acres Web Tools Developer Intern<br><span class="ita">Paula Z. Segal</span><br><span class="ita">Cea Weaver</span><br>' + 
+    '<b>Data gathering:</b><br>' +
+    '<span class="ita">• Tiera Mack</span><br>' +
+    '<span class="ita">• Sam Raby</span>, Web Tools Developer Intern, <a href="http://596acres.org/" target="_blank">596 Acres</a><br>' +
+    '<span class="ita">• Paula Z. Segal</span><br>'+ 
+    '<span class="ita">• Cea Weaver</span><br>' + 
         '<hr style="height:0px; visibility:hidden;" />' +
-    '<b>Web tool development:</b><br><span class="ita">Sam Raby</span><br>' +
+    '<b>Web tool development:</b><br>' +
+    '<span class="ita">• Sam Raby</span><br>' +
         '<hr style="height:0px; visibility:hidden;" />' +
-    '<b>Special thanks:<br></b><span class="ita">Stephanie Alvarado</span> and <span class="ita">Mara Kravitz</span>, Directors of Advocacy and Partnerships at 596 Acres<br><span class="ita">Oksana Mironova</span>, <a href="http://www.cssny.org/" target="_blank">CSS</a><br> ' + 
-    '<span class="ita">Stephanie Sosa</span> and <span class="ita">Christopher Walters</span> from <a href="https://anhd.org/" target="_blank">ANHD</a>' +
+    '<b>Special thanks:</b><br>' +
+    '<span class="ita">• Stephanie Alvarado</span> and <span class="ita">Mara Kravitz</span>, Directors of Advocacy and Partnerships, <a href="http://596acres.org/" target="_blank">596 Acres</a><br>' +
+    '<span class="ita">• Oksana Mironova</span>, <a href="http://www.cssny.org/" target="_blank">CSS</a><br> ' + 
+    '<span class="ita">• Stephanie Sosa</span> and <span class="ita">Christopher Walters</span> from <a href="https://anhd.org/" target="_blank">ANHD</a>' +
 '<h3>LICENSE</h3>' +
     'This site is licensed through Creative Commons under the ' + 
     '<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a> license.' +
