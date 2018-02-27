@@ -72,7 +72,7 @@ b {
 }
 
 .about-close-button {
-    right: 10px;
+    right: 20px;
     top: 10px;
     position: absolute;
     padding: 0px;
@@ -161,7 +161,7 @@ b {
 }
 
 #logo-596 { 
-    right: 60px;
+    right: 70px;
     top: 13.5px;
     position: absolute;
     z-index: 10000;
