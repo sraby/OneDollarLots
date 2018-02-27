@@ -75,6 +75,7 @@ b {
     right: 10px;
     top: 10px;
     position: absolute;
+    display: block;
     font-size: 32px;
     z-index: 10000;
     background-color: rgba(0,0,0,0);
@@ -164,6 +165,7 @@ b {
     position: absolute;
     z-index: 10000;
     opacity: 0.8;
+    display: block;
 }
 
 #logo-596:hover {
