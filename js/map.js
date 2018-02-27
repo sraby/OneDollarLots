@@ -318,6 +318,7 @@ var toggleAbout = function(){
 map.on('layeradd', function(e) { document.getElementById('about').innerHTML = 
     '<div class="about-banner"></div>' +
     '<div><button class="about-close-button" onclick="toggleAbout();" style="outline: none;"><b>✕</b></button></div>' +
+    '<div id="logo-596"><a href="http://596acres.org/" target="_blank"><img src="images/596.png" width="40px"></a></div>' +
 '<h3>ABOUT</h3>' + 
     'Since January, 2014, the city of New York has sold <b>' + ODL_sold.getLayers().length + 
     '</b> city-owned lots of land to housing developers for $1.00 each. ' + 
@@ -375,7 +376,7 @@ map.on('layeradd', function(e) { document.getElementById('about').innerHTML =
         '<hr style="height:0px; visibility:hidden;" />' + 
     '• <a href="http://lghttp.58547.nexcesscdn.net/803F44A/images/nycss/images/uploads/pubs/housing_new_york_-_FINAL_9_20_17.pdf" target="_blank">"Taking Stock" report</a>, ' +
     'a data-driven independent review of common concerns surrounding the Housing New York plan, by Community Service Society.' +
-'<h3>CONTACT US</h3>' + 
+'<h3>CONTACT US</h3>' +
     '<b>Email:</b> <a href="mailto:organizers@596acres.org" target="_blank">organizers@596acres.org</a><br>' +
     '<b>Phone:</b> (718) 316-6092<br>' + 
     '<b>Website:</b> <a href="http://596acres.org/" target="_blank">596acres.org</a>' +
