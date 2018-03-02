@@ -129,10 +129,11 @@ var pendingData = L.geoJson(null, {
 // MAP DATA
 
 // Field Names: 
-// Status   Symbol  Project_Name    Purchaser_Type  Purchaser_Name  Details_and_Restrictions    Restrictions_Source   Link_to_Proposed_Disposition  
-// Source_of_Info  Date_Notice_was_Published   Date_of_Public_Hearing  Borough BoroCode    Block   Lot Address Link_to_Deed    Date_Deed_Signed    
-// Lot_Code    Land_Use    Link_to_LivingLots  Link_to_Zola    Link_to_NYCommons   Address_Full    Latitude Longitude   
-// Council_District    Community_District  Community_District_Code Community_District_Income   Percent_of_AMI                                                           
+// Status   Symbol  Project_Name    Purchaser_Type  Purchaser_Name  Details_and_Restrictions    Length_of_Restrictions  
+// Link_to_Restrictions_Source Restrictions_Source Link_to_Proposed_Disposition    Source_of_Proposal  Date_Notice_was_Published   
+// Date_of_Public_Hearing  Borough BoroCode    Block   Lot Address Link_to_Deed    Date_Deed_Signed    Lot_Code    Land_Use   
+// Link_to_LivingLots  Link_to_Zola    Link_to_NYCommons   Address_Full    Latitude    Longitude   Council_District    Community_District  
+// Community_District_Code Community_District_Income   Percent_of_AMI              
 
 var ODL_sold = omnivore.csv('data.csv', null, soldData);
 ODL_sold.addTo(map);
@@ -207,6 +208,15 @@ function edcButton(x) {
     }
 }
 
+function shortenLandDisp(x) {
+    if (x == "Land Disposition Agreement") {
+        return "Land Dispo. Agreement"
+    }
+    else { 
+        return x 
+    }
+}
+
 ODL_sold.bindPopup(function (layer) {
     return L.Util.template('<h3>Sold for $1</h3>' 
         + layer.feature.properties.Purchaser_Name + ', a ' + '<b style="color: ' + getTextColor(layer.feature.properties.Symbol) + ';">' + layer.feature.properties.Purchaser_Type + '</b>, bought this land from the city for one dollar on ' + layer.feature.properties.Date_Deed_Signed + '.<br>' +
@@ -216,10 +226,12 @@ ODL_sold.bindPopup(function (layer) {
               '<tr><td>Districts</td><td> <a target="_blank" href="https://communityprofiles.planning.nyc.gov/' + layer.feature.properties.Borough.toLowerCase() + '/' + layer.feature.properties.Community_District + '" style="color: ' + getTextColor(layer.feature.properties.Symbol) + ';">' +
                     layer.feature.properties.Borough + " Community District " + layer.feature.properties.Community_District + '</a>, <br><a style="color: ' + getTextColor(layer.feature.properties.Symbol) + ' ;" target="_blank" href="https://council.nyc.gov/district-' + layer.feature.properties.Council_District + '/">' +
                     'City Council District ' + layer.feature.properties.Council_District + '</a></td></tr>' +
-              '<tr><td>Housing Restrictions</td><td>' + layer.feature.properties.Details_and_Restrictions + ' | <a style="color: ' + getTextColor(layer.feature.properties.Symbol) + ' ;" target="_blank" href="' + layer.feature.properties.Restrictions_Source +'">source</a></td></tr>' +
+              '<tr><td>Housing Restrictions</td><td>' + layer.feature.properties.Details_and_Restrictions + '<br><span class="ita">&nbsp; — <a style="color:' + getTextColor(layer.feature.properties.Symbol) + ' ;" target="_blank" href="' + layer.feature.properties.Link_to_Restrictions_Source +'">' + layer.feature.properties.Restrictions_Source + '</a></span></td></tr>' + 
+              '<tr><td>Length of Restrictions</td><td>' + layer.feature.properties.Length_of_Restrictions + '</td></tr>' + 
               '<tr><td>Community District Income</td><td>$' + numberWithCommas(layer.feature.properties.Community_District_Income) + ' median<br>(' + (layer.feature.properties.Community_District_Income/859).toFixed(0)+ '% AMI for household of three)</td></tr>' + 
               '</table><hr style="height:0px; visibility:hidden;" />' +
               '<a class="btn-grey" style="background-color:' + getTextColor(layer.feature.properties.Symbol) + ';" target="_blank" href="' + layer.feature.properties.Link_to_Proposed_Disposition + '">' + edcButton(layer.feature.properties.Source_of_Info) + '</a>' +
+              '<a class="btn-grey" style="background-color:' + getTextColor(layer.feature.properties.Symbol) + ';" target="_blank" href="' + layer.feature.properties.Link_to_Restrictions_Source + '">' + shortenLandDisp(layer.feature.properties.Restrictions_Source) + '</a>' +
               '<a class="btn-grey" style="background-color:' + getTextColor(layer.feature.properties.Symbol) + ';" target="_blank" href="' + layer.feature.properties.Link_to_Deed + '">Deed</a>' +
               '<a class="btn-grey" style="background-color:' + getTextColor(layer.feature.properties.Symbol) + ';" target="_blank" href="' + layer.feature.properties.Link_to_Zola + '">Detailed lot info (ZoLa)</a>');
         });
@@ -234,11 +246,11 @@ ODL_pending.bindPopup(function (layer) {
               '<tr><td>Districts</td><td> <a target="_blank" href="https://communityprofiles.planning.nyc.gov/' + layer.feature.properties.Borough.toLowerCase() + '/' + layer.feature.properties.Community_District + '" style="color: ' + getTextColor(layer.feature.properties.Symbol) + ';">' +
                     layer.feature.properties.Borough + " Community District " + layer.feature.properties.Community_District + '</a>, <br><a style="color: ' + getTextColor(layer.feature.properties.Symbol) + ' ;" target="_blank" href="https://council.nyc.gov/district-' + layer.feature.properties.Council_District + '/">' +
                     'City Council District ' + layer.feature.properties.Council_District + '</a></td></tr>' +
-              '<tr><td>Current Land Use</td><td>' + layer.feature.properties.Land_Use + '</td></tr>' +
-              '<tr><td>Housing Restrictions</td><td>' + layer.feature.properties.Details_and_Restrictions + ' | <a style="color: ' + getTextColor(layer.feature.properties.Symbol) + ' ;" target="_blank" href="' + layer.feature.properties.Restrictions_Source +'">source</a></td></tr>' +
+              '<tr><td>Current Use</td><td>' + layer.feature.properties.Land_Use + '</td></tr>' +
+              '<tr><td>Proposed Restrictions</td><td>' + layer.feature.properties.Details_and_Restrictions + ' | source: <a style="color: ' + getTextColor(layer.feature.properties.Symbol) + ' ;" target="_blank" href="' + layer.feature.properties.Link_to_Restrictions_Source +'">' + layer.feature.properties.Restrictions_Source + '</a></td></tr>' +
               '<tr><td>Community District Income</td><td>$' + numberWithCommas(layer.feature.properties.Community_District_Income) + ' median<br>(' + (layer.feature.properties.Community_District_Income/859).toFixed(0)+ '% AMI for household of three)</td></tr>' + 
               '</table><hr style="height:0px; visibility:hidden;" />' +
-              '<a class="btn-grey" style="background-color:' + getTextColor(layer.feature.properties.Symbol) + ';" target="_blank" href="' + layer.feature.properties.Link_to_Proposed_Disposition + '">' + edcButton(layer.feature.properties.Source_of_Info) + '</a>' +
+              '<a class="btn-grey" style="background-color:' + getTextColor(layer.feature.properties.Symbol) + ';" target="_blank" href="' + layer.feature.properties.Link_to_Proposed_Disposition + '">' + edcButton(layer.feature.properties.Source_of_Proposal) + '</a>' +
               '<a class="btn-grey" style="background-color:' + getTextColor(layer.feature.properties.Symbol) + ';" target="_blank" href="mailto:organizers@596acres.org">Contact to organize</a>' +
               '<a class="btn-grey" style="background-color:' + getTextColor(layer.feature.properties.Symbol) + ';" target="_blank" href="' + layer.feature.properties.Link_to_Zola + '">Detailed lot info (ZoLa)</a>');
         });
@@ -320,7 +332,7 @@ map.on('layeradd', function(e) { document.getElementById('about').innerHTML =
     '<button class="about-close-button" onclick="toggleAbout();" style="outline: none;"><b>✕</b></button>' +
     '<div id="logo-596"><a href="http://596acres.org/" target="_blank"><img src="images/596.png" width="40px"></a></div></div>' +
 '<h3>ABOUT</h3>' + 
-    'Since January, 2014, the city of New York has sold <b>' + ODL_sold.getLayers().length + 
+    'Since Mayor Bill de Blasio took office on January 1st, 2014, the City of New York has sold <b>' + ODL_sold.getLayers().length + 
     '</b> city-owned lots of land to housing developers for $1.00 each. ' + 
         '<hr style="height:0px; visibility:hidden;" />' + 
     'Some of this land has gone to organizations doing valuable and necessary work for the city—' + 
