@@ -204,7 +204,7 @@ function edcButton(x) {
 
 function shortenLandDisp(x) {
     if (x == "Land Disposition Agreement") {
-        return "Land Dispo. Agreement"
+        return "Land Disp. Agreement"
     }
     else { 
         return x 
