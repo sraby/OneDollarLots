@@ -11,6 +11,11 @@ b {
     font-weight: 700;
 }
 
+.tight-line {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
 .ita {
     font-style: italic;
 }

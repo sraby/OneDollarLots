@@ -16,31 +16,25 @@ L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
 
 function getColor(d) 
     {
-        return  d ==     'Pending non-profit developer' ? '#7EC069':
-                d ==     'Sold non-profit developer' ? '#7EC069':
-                d ==     'Pending for-profit/non-profit group' ? '#F6D472':
+        return  d ==     'Sold non-profit developer' ? '#7EC069':
                 d ==     'Sold for-profit/non-profit group' ? '#F6D472':
-                d ==     'Pending for-profit developer' ? '#D82B2F':
-                '#D82B2F';
+                d ==     'Sold for-profit developer' ? '#D82B2F':
+                '#956FD6';
         }
 
 function getBorder(d)
     {
-        return  d ==     'Pending non-profit developer' ? '#538D26':
-                d ==     'Sold non-profit developer' ? '#538D26':
-                d ==     'Pending for-profit/non-profit group' ? '#D4B047':
+        return  d ==     'Sold non-profit developer' ? '#538D26':
                 d ==     'Sold for-profit/non-profit group' ? '#D4B047':
-                d ==     'Pending for-profit developer' ? '#B01317':
-                '#B01317';
+                d ==     'Sold for-profit developer' ? '#B01317':
+                '#7A5BB0';
         }
 
 function getTextColor(d) {
-        return  d ==     'Pending non-profit developer' ? '#69A748':
-                d ==     'Sold non-profit developer' ? '#69A748':
-                d ==     'Pending for-profit/non-profit group' ? '#D4B047':
+        return  d ==     'Sold non-profit developer' ? '#69A748':
                 d ==     'Sold for-profit/non-profit group' ? '#D4B047':
-                d ==     'Pending for-profit developer' ? '#d73027':
-                '#d73027';
+                d ==     'Sold for-profit developer' ? '#d73027':
+                '#8865C3';
 }
 
 
@@ -192,10 +186,10 @@ function numberWithCommas(x) {
 
 function edcText(x) {
     if (x == "EDC Board Meeting Minutes") {
-        return "during an EDC board meeting on "
+        return "Notes from an EDC board meeting on "
     }
     else {
-        return "in a notice posted on "
+        return "A city record notice posted on "
     }
 }
 
@@ -238,8 +232,8 @@ ODL_sold.bindPopup(function (layer) {
 
 ODL_pending.bindPopup(function (layer) {
     return L.Util.template('<h3>Pending Sale for $1</h3>' 
-        + layer.feature.properties.Purchaser_Name + ', a <b style="color: ' + getTextColor(layer.feature.properties.Symbol) + ';">' + layer.feature.properties.Purchaser_Type + '</b>, was a proposed one-dollar buyer of this land ' + 
-            edcText(layer.feature.properties.Source_of_Info) + layer.feature.properties.Date_Notice_was_Published + '.<br>' +
+        + edcText(layer.feature.properties.Source_of_Proposal) + layer.feature.properties.Date_Notice_was_Published + ' identified this lot as a <b style="color:#8865C3">potential $1 sale</b> and proposed ' +
+        layer.feature.properties.Purchaser_Name + ', a ' + layer.feature.properties.Purchaser_Type + ', as a buyer.' + 
             '<table>' + 
               '<tr><td>BBL</td><td>' + layer.feature.properties.Borough + ' block ' + layer.feature.properties.Block + ', lot ' + layer.feature.properties.Lot + '</td></tr>' + 
               '<tr><td>Address</td><td>' + layer.feature.properties.Address + '</td></tr>' +
@@ -247,7 +241,7 @@ ODL_pending.bindPopup(function (layer) {
                     layer.feature.properties.Borough + " Community District " + layer.feature.properties.Community_District + '</a>, <br><a style="color: ' + getTextColor(layer.feature.properties.Symbol) + ' ;" target="_blank" href="https://council.nyc.gov/district-' + layer.feature.properties.Council_District + '/">' +
                     'City Council District ' + layer.feature.properties.Council_District + '</a></td></tr>' +
               '<tr><td>Current Use</td><td>' + layer.feature.properties.Land_Use + '</td></tr>' +
-              '<tr><td>Proposed Restrictions</td><td>' + layer.feature.properties.Details_and_Restrictions + ' | source: <a style="color: ' + getTextColor(layer.feature.properties.Symbol) + ' ;" target="_blank" href="' + layer.feature.properties.Link_to_Restrictions_Source +'">' + layer.feature.properties.Restrictions_Source + '</a></td></tr>' +
+              '<tr><td>Proposed Restrictions</td><td>' + layer.feature.properties.Details_and_Restrictions + '<br><span class="ita">&nbsp; — <a style="color:' + getTextColor(layer.feature.properties.Symbol) + ' ;" target="_blank" href="' + layer.feature.properties.Link_to_Restrictions_Source +'">' + layer.feature.properties.Restrictions_Source + '</a></span></td></tr>' + 
               '<tr><td>Community District Income</td><td>$' + numberWithCommas(layer.feature.properties.Community_District_Income) + ' median<br>(' + (layer.feature.properties.Community_District_Income/859).toFixed(0)+ '% AMI for household of three)</td></tr>' + 
               '</table><hr style="height:0px; visibility:hidden;" />' +
               '<a class="btn-grey" style="background-color:' + getTextColor(layer.feature.properties.Symbol) + ';" target="_blank" href="' + layer.feature.properties.Link_to_Proposed_Disposition + '">' + edcButton(layer.feature.properties.Source_of_Proposal) + '</a>' +
@@ -341,7 +335,8 @@ map.on('layeradd', function(e) { document.getElementById('about').innerHTML =
     'Some of this land has also gone to for-profit housing developers building ' + 
     '<a href="http://www.nydailynews.com/new-york/hpd-plans-sell-prime-land-1-private-developer-article-1.2092855" target="_blank">market-rate apartments</a> ' + 
     'or "affordable" units too expensive for a local to live in. ' +
-    'And these sales are happening with <a href="https://citylimits.org/2016/06/14/cityviews-city-giving-away-land-with-little-public-discussion/" target="_blank">few opportunities</a> for input from those most impacted.' +
+    'And these sales are happening with <a href="https://citylimits.org/2016/06/14/cityviews-city-giving-away-land-with-little-public-discussion/" target="_blank">few opportunities</a> for input from those most impacted. ' +
+    'Only <b>one</b> of these lots has become permanently affordable housing.' +
         '<hr style="height:0px; visibility:hidden;" />' + 
     'The ONE DOLLAR LOTS project by <a href="http://596acres.org/" target="_blank">596 Acres</a> is an archive of these $1 lot sales. It is also a place for organizers and local residents to get information about ' + 
     'pending sales that may disrupt their communities and imagine better uses for cheap public land. <b>' + ODL_pending.getLayers().length + ' </b> lots are still pending final sale.' + 
@@ -357,6 +352,8 @@ map.on('layeradd', function(e) { document.getElementById('about').innerHTML =
     'Also on <a href="https://a836-acris.nyc.gov/DS/DocumentSearch/BBL" target="_blank">ACRIS</a>, ' +
     'each deed is posted along with a regulatory agreement that spells out certain restrictions on how the developer must use the land. This is crucial information: these agreements include ' +
     'what target incomes any new housing must be built for and how long these affordability restrictions last— good indicators of how useful new housing may be for the local community.' + 
+        '<hr style="height:0px; visibility:hidden;" />' + 
+    'Take a look at the raw data <a href="https://docs.google.com/spreadsheets/d/1D7TIpWiOHXa_--9rlAB7zI146C8tMl6756w1FBu6Pfw/edit?usp=sharing" target="_blank">here</a>.' +
 '<h3>USING THE MAP</h3>' + 
     'In the upper-right, click on the map controls to toggle different layers on and off, zoom in and out, and locate an address.' + 
         '<hr style="height:0px; visibility:hidden;" />' + 
@@ -364,14 +361,14 @@ map.on('layeradd', function(e) { document.getElementById('about').innerHTML =
     'To contact the local Council Member, click on the "City Council District" link.' +
         '<hr style="height:0px; visibility:hidden;" />' + 
     'When clicking on a point, make sure to look at the "Housing Restrictions" section and compare it to "Community District Income." This gives an idea of how useful this land sale may be to locals.' + 
-    ' Keep in mind: <b> a non-profit developer is not necessarily serving the commmunity well</b>. If you need more detailed information on restrictions, click on the "source" link to see the proposal/regulatory agreement regarding the sale.' +
+    ' Keep in mind: <b> a non-profit developer is not necessarily serving the commmunity well</b>. If you need more detailed information on restrictions, click on the "source" link to see the proposal or agreement regarding the sale.' +
 '<h3>WHY IT MATTERS</h3>' +
-    'Public land is a priceless resource. Historically, it’s been a way for groups of residents of NYC to create the places we know we need to survive and thrive. ' + 
+    'Public land is a priceless resource. Historically, it has been a way for groups of residents of NYC to create the places we know we need to survive and thrive. ' + 
     'Kept public, or given away cheaply to groups organized specifically to ensure long-term public benefit like community land trusts, ' +
     'public land has become deeply and permanently affordable housing, community, cooperative, cultural and commercial spaces, and so much more. ' + 
     'Public land is a great starting place for actualizing the city as commons!' +  
         '<hr style="height:0px; visibility:hidden;" />' + 
-    'The vacant city-owned lots that have been sold for $1 largely resulted from decades of institutionally racist land use policies including ' +
+    'These vacant city-owned lots that have been sold for $1 largely resulted from decades of institutionally racist land use policies including ' +
     '<a href="https://native-land.ca" target="_blank">settler colonialism</a>, ' +
     '<a href="https://dsl.richmond.edu/panorama/redlining/#loc=5/39.105/-94.583&amp;opacity=0.8" target="_blank">redlining</a>, ' +
     'and <a href="http://urbanreviewer.org" target="_blank">Urban Renewal Area clearance</a>. ' +
@@ -387,8 +384,10 @@ map.on('layeradd', function(e) { document.getElementById('about').innerHTML =
     'Created through collaboration between <a href="http://www.commoncause.org/states/new-york/" target="_blank">Common Cause/NY</a>, the <a href="http://cdp.urbanjustice.org/" target="_blank">Community Development Project at the Urban Justice Center</a>, and <a href="/admin/page/page/3/change/596acres.org" target="_blank">596 Acres</a>.' + 
         '<hr style="height:0px; visibility:hidden;" />' + 
     '• <a href="http://lghttp.58547.nexcesscdn.net/803F44A/images/nycss/images/uploads/pubs/housing_new_york_-_FINAL_9_20_17.pdf" target="_blank">"Taking Stock" report</a>, ' +
-    'a data-driven independent review of common concerns surrounding the Housing New York plan, by Community Service Society.' +
+    'a data-driven independent review of common concerns surrounding the City&#8217;s Housing New York plan, by <a href="http://www.cssny.org/" target="_blank">Community Service Society</a>.' +
 '<h3>CONTACT US</h3>' +
+    'To ask questions, suggest changes, or get help organizing to change how dollar sales are impacting your neighborhood and city, contact <a href="http://596acres.org/" target="_blank">596 Acres</a>:' +
+        '<hr style="height:0px; visibility:hidden;" />' + 
     '<b>Email:</b> <a href="mailto:organizers@596acres.org" target="_blank">organizers@596acres.org</a><br>' +
     '<b>Phone:</b> (718) 316-6092<br>' + 
     '<b>Website:</b> <a href="http://596acres.org/" target="_blank">596acres.org</a>' +
@@ -396,9 +395,9 @@ map.on('layeradd', function(e) { document.getElementById('about').innerHTML =
     'This map was created by <a href="http://596acres.org/" target="_blank">596 Acres</a> with help from some of our friends and partners.' +
         '<hr style="height:0px; visibility:hidden;" />' +
     '<b>Methodology:</b><br>' + 
-    '<span class="ita">• Tiera Mack</span>, MUP Student<br>' +
-    '<span class="ita">• Paula Z. Segal</span>, Esq., Equitable Neighborhoods Practice, Community Development Project @eqneighborhoods<br> ' +
-    '<span class="ita">• Cea Weaver</span>, Research & Policy Director, New York Communities for Change<br>' +
+    '<span class="ita">• Tiera Mack</span>, Masters in Urban Planning student<br>' +
+    '<span class="ita">• Paula Z. Segal</span>, Esq., <a href="https://cdp.urbanjustice.org/cdp-equitable-neighborhoods" target="_blank">Equitable Neighborhoods Practice</a>, CDP @eqneighborhoods<br> ' +
+    '<span class="ita">• Cea Weaver</span>, Research & Policy Director, <a href="http://nycommunities.org" target="_blank">New York Communities for Change</a><br>' +
         '<hr style="height:0px; visibility:hidden;" />' +
     '<b>Data gathering:</b><br>' +
     '<span class="ita">• Tiera Mack</span><br>' +
