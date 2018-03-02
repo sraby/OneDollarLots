@@ -221,7 +221,7 @@ ODL_sold.bindPopup(function (layer) {
                     layer.feature.properties.Borough + " Community District " + layer.feature.properties.Community_District + '</a>, <br><a style="color: ' + getTextColor(layer.feature.properties.Symbol) + ' ;" target="_blank" href="https://council.nyc.gov/district-' + layer.feature.properties.Council_District + '/">' +
                     'City Council District ' + layer.feature.properties.Council_District + '</a></td></tr>' +
               '<tr><td>Housing Restrictions</td><td>' + layer.feature.properties.Details_and_Restrictions + '<br>&nbsp; — <a style="color:' + getTextColor(layer.feature.properties.Symbol) + ' ;" target="_blank" href="' + layer.feature.properties.Link_to_Restrictions_Source +'">' + layer.feature.properties.Restrictions_Source + '</a></td></tr>' + 
-              '<tr><td>Length of Restrictions</td><td>' + layer.feature.properties.Length_of_Restrictions + '</td></tr>' + 
+              '<tr><td>Restriction Period</td><td>' + layer.feature.properties.Length_of_Restrictions + '</td></tr>' + 
               '<tr><td>Community District Income</td><td>$' + numberWithCommas(layer.feature.properties.Community_District_Income) + ' median<br>(' + (layer.feature.properties.Community_District_Income/859).toFixed(0)+ '% AMI for household of three)</td></tr>' + 
               '</table><hr style="height:0px; visibility:hidden;" />' +
               '<a class="btn-grey" style="background-color:' + getTextColor(layer.feature.properties.Symbol) + ';" target="_blank" href="' + layer.feature.properties.Link_to_Proposed_Disposition + '">' + edcButton(layer.feature.properties.Source_of_Info) + '</a>' +
