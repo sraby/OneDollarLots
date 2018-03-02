@@ -296,6 +296,7 @@ input[type="checkbox" i] {
     height: 12px;
     margin-left: 6px;
     margin-right: 6px;
+    margin-bottom: -2px;
     width: 12px;
     opacity: 0.7;
 }

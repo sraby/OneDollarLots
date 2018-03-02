@@ -189,7 +189,7 @@ function edcText(x) {
         return "Notes from an EDC board meeting on "
     }
     else {
-        return "A city record notice posted on "
+        return "A City Record notice posted on "
     }
 }
 
@@ -198,7 +198,7 @@ function edcButton(x) {
         return "EDC meeting notes"
     }
     else {
-        return "City record notice"
+        return "City Record notice"
     }
 }
 
