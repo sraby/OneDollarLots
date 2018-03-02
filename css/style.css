@@ -226,7 +226,7 @@ tr {
     font-weight: 750;
 }
 
-input[type="checkbox" i] { 
+input[type="checkbox"] { 
     display: none; 
 }
 
