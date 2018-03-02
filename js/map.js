@@ -334,9 +334,9 @@ map.on('layeradd', function(e) { document.getElementById('about').innerHTML =
     '<a href="https://www.dnainfo.com/new-york/20160823/east-village/bea-arthur-lgbt-homeless-shelter-slated-for-completion-feb-2017" target="_blank">shelters for LGBT youth</a>. ' +
     'Some of this land has also gone to for-profit housing developers building ' + 
     '<a href="http://www.nydailynews.com/new-york/hpd-plans-sell-prime-land-1-private-developer-article-1.2092855" target="_blank">market-rate apartments</a> ' + 
-    'or "affordable" units too expensive for a local to live in. ' +
+    'or "affordable" units too expensive for locals to live in. ' +
     'And these sales are happening with <a href="https://citylimits.org/2016/06/14/cityviews-city-giving-away-land-with-little-public-discussion/" target="_blank">few opportunities</a> for input from those most impacted. ' +
-    'Only <b>one</b> of these lots has become permanently affordable housing.' +
+    'To date, only <b>one</b> of these lots has become permanently affordable housing.' +
         '<hr style="height:0px; visibility:hidden;" />' + 
     'The ONE DOLLAR LOTS project by <a href="http://596acres.org/" target="_blank">596 Acres</a> is an archive of these $1 lot sales. It is also a place for organizers and local residents to get information about ' + 
     'pending sales that may disrupt their communities and imagine better uses for cheap public land. <b>' + ODL_pending.getLayers().length + ' </b> lots are still pending final sale.' + 
@@ -361,20 +361,20 @@ map.on('layeradd', function(e) { document.getElementById('about').innerHTML =
     'To contact the local Council Member, click on the "City Council District" link.' +
         '<hr style="height:0px; visibility:hidden;" />' + 
     'When clicking on a point, make sure to look at the "Housing Restrictions" section and compare it to "Community District Income." This gives an idea of how useful this land sale may be to locals.' + 
-    ' Keep in mind: <b> a non-profit developer is not necessarily serving the commmunity well</b>. If you need more detailed information on restrictions, click on the "source" link to see the proposal or agreement regarding the sale.' +
+    ' Keep in mind: <b> a non-profit developer is not necessarily serving the commmunity well</b>. If you need more detailed information on housing restrictions, click on the source link below the restrictions to see the proposal or agreement regarding the sale.' +
 '<h3>WHY IT MATTERS</h3>' +
-    'Public land is a priceless resource. Historically, it has been a way for groups of residents of NYC to create the places we know we need to survive and thrive. ' + 
-    'Kept public, or given away cheaply to groups organized specifically to ensure long-term public benefit like community land trusts, ' +
+    'Public land is a priceless resource. Historically, it has been used by residents of NYC to create the places we know we need to survive and thrive. ' + 
+    'Kept public or given away cheaply to groups organized specifically to ensure long-term public benefit— like community land trusts— ' +
     'public land has become deeply and permanently affordable housing, community, cooperative, cultural and commercial spaces, and so much more. ' + 
     'Public land is a great starting place for actualizing the city as commons!' +  
         '<hr style="height:0px; visibility:hidden;" />' + 
-    'These vacant city-owned lots that have been sold for $1 largely resulted from decades of institutionally racist land use policies including ' +
+    'These vacant city-owned lots that have been sold for $1 are vacant due to decades of institutionally racist land use policies including ' +
     '<a href="https://native-land.ca" target="_blank">settler colonialism</a>, ' +
     '<a href="https://dsl.richmond.edu/panorama/redlining/#loc=5/39.105/-94.583&amp;opacity=0.8" target="_blank">redlining</a>, ' +
     'and <a href="http://urbanreviewer.org" target="_blank">Urban Renewal Area clearance</a>. ' +
-    'Many of these lots have been languishing in the middle of active blocks primarily in neighborhoods where communities of color live for years, fenced off by the government but otherwise not maintained. '+ 
-    'Fast forward to 2014, and the city has been selling them without input from the people who have long dealt with the real life impact of abandoned land in their lives. ' +
-    'This squanders potential opportunities for transforming historical violence, and for creating lasting, adaptive public benefit.' +
+    'Many of these lots languish in the middle of active blocks primarily in low-income neighborhoods of color, and they exist for years fenced off by the government but otherwise not maintained. '+ 
+    'Fast forward to 2014, and the city is selling them without input from the people who have long dealt with the real life impact of abandoned land in their lives. ' +
+    'This squanders potential opportunities for transforming historical violence and for creating lasting, adaptive public benefit.' +
 '<h3>HELPFUL LINKS</h3>' +
     '• <a href="https://livinglotsnyc.org/" target="_blank">LivingLots</a>, ' + 
     'a web tool that supports local organizing campaigns to turn vacant lots into community-stewarded land. Created by <a href="http://596acres.org/" target="_blank">596 Acres</a>.' +
@@ -411,7 +411,7 @@ map.on('layeradd', function(e) { document.getElementById('about').innerHTML =
     '<b>Special thanks:</b><br>' +
     '<span class="ita">• Stephanie Alvarado</span> and <span class="ita">Mara Kravitz</span>, Directors of Advocacy and Partnerships, <a href="http://596acres.org/" target="_blank">596 Acres</a><br>' +
     '<span class="ita">• Oksana Mironova</span>, <a href="http://www.cssny.org/" target="_blank">CSS</a><br> ' + 
-    '<span class="ita">• Stephanie Sosa</span> and <span class="ita">Christopher Walters</span> from <a href="https://anhd.org/" target="_blank">ANHD</a>' +
+    '<span class="ita">• Stephanie Sosa</span> and <span class="ita">Christopher Walters</span>, <a href="https://anhd.org/" target="_blank">ANHD</a>' +
 '<h3>LICENSE</h3>' +
     'This site is licensed through Creative Commons under the ' + 
     '<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a> license.' +
