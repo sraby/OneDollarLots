@@ -364,7 +364,7 @@ map.on('layeradd', function(e) { document.getElementById('about').innerHTML =
     'To contact the local Council Member, click on the "City Council District" link.' +
         '<hr style="height:0px; visibility:hidden;" />' + 
     'When clicking on a point, make sure to look at the "Housing Restrictions" section and compare it to "Community District Income." This gives an idea of how useful this land sale may be to locals.' + 
-    ' Keep in mind: <b> a non-profit developer is not necessarily serving the commmunity well</b>. If you need more detailed information on housing restrictions, click on the source link below the restrictions to see the proposal or agreement regarding the sale.' +
+    ' Keep in mind: <b> a non-profit developer is not necessarily serving the community well</b>. If you need more detailed information on housing restrictions, click on the source link below the restrictions to see the proposal or agreement regarding the sale.' +
 '<h3>WHY IT MATTERS</h3>' +
     'Public land is a priceless resource. Historically, it has been used by residents of NYC to create the places we know we need to survive and thrive. ' + 
     'Kept public or given away cheaply to groups organized specifically to ensure long-term public benefit— like community land trusts— ' +
