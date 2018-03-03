@@ -295,7 +295,10 @@ $('.leaflet-control-layers-overlays span:contains(Districts)').toggleClass('laye
 
 L.control.zoom({position:'topright'}).addTo(map);
 
-var searchControl = L.esri.Geocoding.geosearch({position:'topright'}).addTo(map);
+var searchControl = L.esri.Geocoding.geosearch({
+    position:'topright',
+    searchBounds: L.latLngBounds([41.156769,-74.418603],[40.415791,-73.622036])
+}).addTo(map);
 
 var results = L.layerGroup().addTo(map);
 
