@@ -399,7 +399,7 @@ map.on('layeradd', function(e) { document.getElementById('about').innerHTML =
         '<hr style="height:0px; visibility:hidden;" />' +
     '<b>Methodology:</b><br>' + 
     '<span class="ita">• Tiera Mack</span>, Masters in Urban Planning student<br>' +
-    '<span class="ita">• Paula Z. Segal</span>, Esq., <a href="https://cdp.urbanjustice.org/cdp-equitable-neighborhoods" target="_blank">Equitable Neighborhoods Practice</a>, CDP @eqneighborhoods<br> ' +
+    '<span class="ita">• Paula Z. Segal</span>, Esq., <a href="https://cdp.urbanjustice.org/cdp-equitable-neighborhoods" target="_blank">Equitable Neighborhoods Practice</a>, Community Development Project @eqneighborhoods<br> ' +
     '<span class="ita">• Cea Weaver</span>, Research & Policy Director, <a href="http://nycommunities.org" target="_blank">New York Communities for Change</a><br>' +
         '<hr style="height:0px; visibility:hidden;" />' +
     '<b>Data gathering:</b><br>' +
