@@ -342,7 +342,7 @@ map.on('layeradd', function(e) { document.getElementById('about').innerHTML =
     'To date, only <b>one</b> of these lots has become permanently affordable housing.' +
         '<hr style="height:0px; visibility:hidden;" />' + 
     'The ONE DOLLAR LOTS project by <a href="http://596acres.org/" target="_blank">596 Acres</a> is an archive of these $1 lot sales. It is also a place for organizers and local residents to get information about ' + 
-    'pending sales that may disrupt their communities and imagine better uses for cheap public land. <b>' + ODL_pending.getLayers().length + ' </b> lots are still pending final sale.' + 
+    'pending sales that may disrupt their communities and to imagine better uses for cheap public land. <b>' + ODL_pending.getLayers().length + ' </b> lots are still pending final sale.' + 
 '<h3>METHODOLOGY</h3>' +
     'Any time the City plans to sell public land for $1, it posts a "Disposition Notice" in the ' +
     'online <a href="https://a856-cityrecord.nyc.gov/Search/AdvancedCity" target="_blank">City Records database</a>. We tracked ' + 
