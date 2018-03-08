@@ -327,7 +327,7 @@ var toggleAbout = function(){
 map.on('layeradd', function(e) { document.getElementById('about').innerHTML = 
     '<div class="about-banner">' +
     '<button class="about-close-button" onclick="toggleAbout();" style="outline: none;"><b>✕</b></button>' +
-    '<div id="logo-596"><a href="http://596acres.org/" target="_blank"><img src="images/596.png" width="40px"></a></div></div>' +
+    '<div id="logo-596"><a href="http://596acres.org/" target="_blank"><img src="images/596" width="65px"></a></div></div>' +
 '<h3>ABOUT</h3>' + 
     'Since Mayor Bill de Blasio took office on January 1st, 2014, the City of New York has sold <b>' + ODL_sold.getLayers().length + 
     '</b> city-owned lots of land to housing developers for $1.00 each. ' + 

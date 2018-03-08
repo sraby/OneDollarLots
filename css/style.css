@@ -110,6 +110,19 @@ b {
     top: 10px;
 }
 
+.byline {
+    position: absolute; 
+    z-index: 999;
+    left: 10px;
+    bottom: 10px;
+    opacity: 0.7;
+    display: block;
+}
+
+.byline img:hover {
+  width: 68px;
+}
+
 .box-logo {
     float: left;
     border-radius: 10px;
@@ -166,11 +179,11 @@ b {
 }
 
 #logo-596 { 
-    right: 70px;
-    top: 13.5px;
+    right: 65px;
+    top: 10px;
     position: absolute;
     z-index: 10000;
-    opacity: 0.8;
+    opacity: 0.72;
     display: block;
 }
 
@@ -310,6 +323,10 @@ input[type="checkbox"] {
 
     .subtitle {
         display: none !important;  
+    }
+
+    .byline {
+        bottom: 24px;
     }
 }
 
