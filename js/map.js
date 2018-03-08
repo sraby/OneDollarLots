@@ -394,6 +394,8 @@ map.on('layeradd', function(e) { document.getElementById('about').innerHTML =
     '<b>Email:</b> <a href="mailto:organizers@596acres.org" target="_blank">organizers@596acres.org</a><br>' +
     '<b>Phone:</b> (718) 316-6092<br>' + 
     '<b>Website:</b> <a href="http://596acres.org/" target="_blank">596acres.org</a>' +
+'<h3>DONATE</h3>' +
+    '596 Acres relies on your donations to build and maintain tools like this one. You can donate to us through our <a href="http://596acres.org/donate/" target="_blank">donations page</a>.' +
 '<h3>CREDITS</h3>' +
     'This map was created by <a href="http://596acres.org/" target="_blank">596 Acres</a> with help from some of our friends and partners.' +
         '<hr style="height:0px; visibility:hidden;" />' +
