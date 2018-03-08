@@ -113,8 +113,8 @@ b {
 .byline {
     position: absolute; 
     z-index: 999;
-    left: 10px;
-    bottom: 10px;
+    left: 5px;
+    bottom: 5px;
     opacity: 0.7;
     display: block;
 }
